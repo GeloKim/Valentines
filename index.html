@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Heino 💖</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at top, #ffd6e7, #ff8fb1); overflow: hidden; }
+    body::after { content: ""; position: fixed; inset: 0; background-image: radial-gradient(white 1px, transparent 1px); background-size: 40px 40px; opacity: 0.25; animation: sparkleMove 20s linear infinite; pointer-events: none; }
+    @keyframes sparkleMove { from { transform: translateY(0); } to { transform: translateY(-40px); } }
+
+    .intro, .loveLetter, .card, .final { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .intro { position: fixed; inset: 0; font-size: 28px; color: #ff3e78; z-index: 60; }
+    .intro span { font-size: 50px; margin-bottom: 15px; }
+    .loveLetter { position: fixed; inset: 0; background: #fff0f6; font-size: 28px; color: #ff3e78; opacity: 0; z-index: 60; text-align: center; }
+
+    .letter-slide { animation: zoomLetter 6s ease-in-out infinite; }
+    @keyframes zoomLetter { 0%,100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } }
+
+    .heart, .sideHeart { position: fixed; animation: floatHeart linear forwards; pointer-events: none; }
+    @keyframes floatHeart { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-100vh) scale(1.2); opacity: 0; } }
+
+    .card { display: none; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); padding: 45px 55px; border-radius: 35px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.18); position: relative; z-index: 10; animation: fadeIn 1.5s ease; max-width: 90vw; }
+    h1 { font-family: 'Great Vibes', cursive; font-size: 54px; color: #ff3e78; margin-bottom: 10px; text-shadow: 0 4px 12px rgba(255,62,120,0.25); }
+    p { font-size: 18px; color: #444; margin-bottom: 25px; }
+    .buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+    button { padding: 14px 28px; font-size: 18px; border: none; border-radius: 999px; cursor: pointer; transition: 0.25s ease; }
+    .yes { background: linear-gradient(135deg,#ff5c8a,#ff2e63); color: white; box-shadow: 0 8px 20px rgba(255,46,99,0.4); }
+    .yes:hover { transform: scale(1.1); box-shadow: 0 12px 30px rgba(255,46,99,0.5); }
+    .no { background: #eee; color: #666; }
+    .hidden { display: none; }
+    .details { margin-top: 20px; font-size: 18px; color: #ff2e63; animation: fadeIn 1s ease; position: relative; z-index: 15; }
+
+    .final { position: fixed; inset: 0; background: radial-gradient(circle, #ff9ec4, #ff4d88); display: flex; flex-direction: column; color: white; text-align: center; font-size: 24px; z-index: 15; opacity: 0; pointer-events: none; transition: opacity 1s ease; }
+    .final.show { opacity: 1; pointer-events: auto; }
+    .final h2 { font-family: 'Great Vibes', cursive; font-size: 64px; margin-bottom: 20px; animation: fadeIn 2s ease; }
+    .countdown { font-size: 28px; margin-top: 10px; letter-spacing: 2px; }
+    .final .note { margin-top: 20px; font-size: 20px; opacity: 0.95; animation: fadeIn 3s ease; }
+
+    .slideshow-container { margin-top: 25px; width: 80%; max-width: 900px; height: 250px; overflow: hidden; border-radius: 20px; position: relative; background: #000; }
+    .slideshow-track { display: flex; width: calc(6 * 100%); height: 100%; transition: transform 1s ease; }
+    .slideshow-track img { width: calc(100% / 6); height: 100%; object-fit: cover; }
+
+    .bouquet-placeholder { margin-top: 20px; width: 150px; height: 150px; }
+    .bouquet-placeholder img { width: 100%; height: 100%; object-fit: cover; border: none; }
+
+    @keyframes fadeIn { from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
+
+    @media (max-width: 600px) {
+      .intro, .loveLetter { font-size: 20px; }
+      .intro span { font-size: 36px; }
+      .card { padding: 30px 20px; }
+      h1 { font-size: 40px; }
+      p { font-size: 16px; }
+      button { padding: 12px 20px; font-size: 16px; }
+      .final h2 { font-size: 48px; }
+      .countdown { font-size: 20px; }
+      .final .note { font-size: 18px; }
+      .slideshow-container { height: 180px; }
+      .slideshow-track img { width: calc(100% / 4); }
+      .bouquet-placeholder { width: 120px; height: 120px; }
+    }
+  </style>
+</head>
+<body>
+  <audio id="bgMusic" loop autoplay>
+    <source src="https://raw.githubusercontent.com/GeloKim/Valentines/main/SpotiDownloader%20(mp3cut.net).mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="intro" id="mainIntro">
+    <span>💗</span>
+    Something special is loading...
+  </div>
+
+  <div class="loveLetter letter-slide" id="loveLetter">
+    💌 Dear Heino, a special invitation awaits you! 💌
+  </div>
+
+  <div class="final" id="finalPage">
+    <h2>It's a date! 💖</h2>
+    <div class="countdown" id="countdown">Loading countdown...</div>
+    <div class="note">
+      Dress beautifully and be ready to take pictures ✨<br>
+      Come hungry and full of energy for our activities 🍽️⚡<br><br>
+      I can't wait to see you, my love ❤️
+    </div>
+
+    <div class="slideshow-container">
+      <div class="slideshow-track" id="slideShow">
+        <img src="https://raw.githubusercontent.com/GeloKim/Valentines/main/2.png" alt="Slide 1">
+        <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/3.png" alt="Slide 2">
+        <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/4.png" alt="Slide 3">
+        <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/5.png" alt="Slide 4">
+      </div>
+    </div>
+
+    <div class="bouquet-placeholder" id="virtualBouquet">
+      <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/download.gif" alt="Bouquet placeholder" />
+    </div>
+  </div>
+
+  <div class="card" id="mainCard">
+    <h1>Heino 💕</h1>
+    <p id="question">Will you be my Valentine?</p>
+    <div class="buttons" id="buttons">
+      <button class="yes" onclick="sayYes()">Yes 💖</button>
+      <button class="no" onclick="showNo(this)">No 😢</button>
+    </div>
+    <div id="noMsg" class="details hidden"></div>
+    <div id="invite" class="details hidden letter-animation">
+      📍 Date: February 14<br>
+      🕕 Time: 11 AM - Whole Day<br>
+      🍽️ Place: Secret<br><br>
+      I can’t wait to be with you in this special day ❤️
+    </div>
+  </div>
+
+  <script>
+    const mainIntro = document.getElementById('mainIntro');
+    const loveLetter = document.getElementById('loveLetter');
+    const mainCard = document.getElementById('mainCard');
+
+    setTimeout(() => {
+      mainIntro.style.display = 'none';
+      loveLetter.style.display = 'flex';
+      setTimeout(() => {
+        loveLetter.style.display = 'none';
+        mainCard.style.display = 'block';
+      }, 6000);
+    }, 7000);
+
+    function sayYes() {
+      const invite = document.getElementById('invite');
+      invite.classList.remove('hidden');
+      invite.style.position = 'relative';
+      invite.style.zIndex = '20';
+
+      const music = document.getElementById('bgMusic');
+      music.volume = 0.4;
+      music.play().catch(() => {});
+
+      // Delay before showing final page and animations
+      setTimeout(() => {
+        createHearts(50);
+        createConfetti(30);
+        createSideHearts(20);
+        document.getElementById('finalPage').classList.add('show');
+        startSlideLoop();
+      }, 4000); // 4-second delay
+    }
+
+    function showNo(btn) {
+      const messages = [
+        "Bakit sino ka date mo 😔",
+        "Hoy, mali yung pindot mo 😆",
+        "Nice try, pero bawal 💔",
+        "Yes only bleh",
+        "Hmm… I think you meant Yes 💖"
+      ];
+      const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+      btn.innerText = "Not available 😔";
+      const noMsg = document.getElementById('noMsg');
+      noMsg.innerText = randomMsg;
+      noMsg.classList.remove('hidden');
+    }
+
+    function createHearts(count) {
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerText = '💖';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = (16 + Math.random() * 20) + 'px';
+        heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+        heart.style.top = '100%';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+      }
+    }
+
+    function createSideHearts(count) {
+      const finalPage = document.getElementById('finalPage');
+      for (let i = 0; i < count; i++) {
+        const sideHeart = document.createElement('div');
+        sideHeart.className = 'sideHeart';
+        sideHeart.innerText = '💗';
+        sideHeart.style.top = (Math.random() * 80 + 10) + '%';
+        sideHeart.style.left = (Math.random() < 0.5 ? -5 : 95) + '%';
+        sideHeart.style.fontSize = (12 + Math.random() * 16) + 'px';
+        sideHeart.style.opacity = 0.6 + Math.random() * 0.4;
+        sideHeart.style.transition = 'transform 4s ease-in-out';
+        finalPage.appendChild(sideHeart);
+        animateSideHeart(sideHeart);
+      }
+    }
+
+    function animateSideHeart(el) {
+      let direction = el.style.left.includes('95') ? -1 : 1;
+      setInterval(() => {
+        el.style.transform = `translateX(${direction * 20}px)`;
+        direction *= -1;
+      }, 2000);
+    }
+
+    function createConfetti(count) {
+      for (let i = 0; i < count; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+        confetti.style.animationDuration = (2 + Math.random() * 3) + 's';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+      }
+    }
+
+    function startSlideLoop() {
+      const track = document.getElementById('slideShow');
+      let index = 0;
+      const slides = track.children.length;
+      const slideWidth = track.children[0].offsetWidth;
+
+      setInterval(() => {
+        index = (index + 1) % slides;
+        track.style.transform = `translateX(-${(index % 6) * slideWidth}px)`;
+      }, 3000);
+    }
+
+    const targetDate = new Date('February 14, 2026 18:00:00 GMT+0800').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      if (distance <= 0) {
+        document.getElementById('countdown').innerText = "It's today!!! 💖";
+        return;
+      }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+      document.getElementById('countdown').innerText = `${days}d ${hours}h ${minutes}m ${seconds}s until our date 💞`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
