@@ -1,259 +1,466 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For Heino 💖</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For Heino 💖</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet" />
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-    body { height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at top, #ffd6e7, #ff8fb1); overflow: hidden; }
-    body::after { content: ""; position: fixed; inset: 0; background-image: radial-gradient(white 1px, transparent 1px); background-size: 40px 40px; opacity: 0.25; animation: sparkleMove 20s linear infinite; pointer-events: none; }
-    @keyframes sparkleMove { from { transform: translateY(0); } to { transform: translateY(-40px); } }
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+body {
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:radial-gradient(circle at top,#ffd6e7,#ff8fb1);
+  overflow:hidden;
+}
 
-    .intro, .loveLetter, .card, .final { display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .intro { position: fixed; inset: 0; font-size: 28px; color: #ff3e78; z-index: 60; }
-    .intro span { font-size: 50px; margin-bottom: 15px; }
-    .loveLetter { position: fixed; inset: 0; background: #fff0f6; font-size: 28px; color: #ff3e78; opacity: 0; z-index: 60; text-align: center; }
+.heart,.sideHeart,.confetti {
+  position:fixed;
+  pointer-events:none;
+  z-index:1000;
+}
 
-    .letter-slide { animation: zoomLetter 6s ease-in-out infinite; }
-    @keyframes zoomLetter { 0%,100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } }
+@keyframes floatHeart {
+  from { transform:translateY(0); opacity:1 }
+  to { transform:translateY(-100vh); opacity:0 }
+}
+@keyframes fallConfetti {
+  from { transform:translateY(0) rotate(0deg); opacity:1 }
+  to { transform:translateY(-100vh) rotate(360deg); opacity:0 }
+}
 
-    .heart, .sideHeart { position: fixed; animation: floatHeart linear forwards; pointer-events: none; }
-    @keyframes floatHeart { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-100vh) scale(1.2); opacity: 0; } }
+.intro,.loveLetter,.card,.final {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
 
-    .card { display: none; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); padding: 45px 55px; border-radius: 35px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.18); position: relative; z-index: 10; animation: fadeIn 1.5s ease; max-width: 90vw; }
-    h1 { font-family: 'Great Vibes', cursive; font-size: 54px; color: #ff3e78; margin-bottom: 10px; text-shadow: 0 4px 12px rgba(255,62,120,0.25); }
-    p { font-size: 18px; color: #444; margin-bottom: 25px; }
-    .buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-    button { padding: 14px 28px; font-size: 18px; border: none; border-radius: 999px; cursor: pointer; transition: 0.25s ease; }
-    .yes { background: linear-gradient(135deg,#ff5c8a,#ff2e63); color: white; box-shadow: 0 8px 20px rgba(255,46,99,0.4); }
-    .yes:hover { transform: scale(1.1); box-shadow: 0 12px 30px rgba(255,46,99,0.5); }
-    .no { background: #eee; color: #666; }
-    .hidden { display: none; }
-    .details { margin-top: 20px; font-size: 18px; color: #ff2e63; animation: fadeIn 1s ease; position: relative; z-index: 15; }
+.intro {
+  position:fixed;
+  inset:0;
+  font-size:28px;
+  color:#ff3e78;
+  z-index:60;
+}
+.intro span { font-size:50px; margin-bottom:15px; }
 
-    .final { position: fixed; inset: 0; background: radial-gradient(circle, #ff9ec4, #ff4d88); display: flex; flex-direction: column; color: white; text-align: center; font-size: 24px; z-index: 15; opacity: 0; pointer-events: none; transition: opacity 1s ease; }
-    .final.show { opacity: 1; pointer-events: auto; }
-    .final h2 { font-family: 'Great Vibes', cursive; font-size: 64px; margin-bottom: 20px; animation: fadeIn 2s ease; }
-    .countdown { font-size: 28px; margin-top: 10px; letter-spacing: 2px; }
-    .final .note { margin-top: 20px; font-size: 20px; opacity: 0.95; animation: fadeIn 3s ease; }
+.loveLetter {
+  position:fixed;
+  inset:0;
+  background:#fff0f6;
+  font-size:28px;
+  color:#ff3e78;
+  text-align:center;
+  z-index:60;
+  animation:zoomLetter 6s ease-in-out infinite;
+}
 
-    .slideshow-container { margin-top: 25px; width: 80%; max-width: 900px; height: 250px; overflow: hidden; border-radius: 20px; position: relative; background: #000; }
-    .slideshow-track { display: flex; width: calc(6 * 100%); height: 100%; transition: transform 1s ease; }
-    .slideshow-track img { width: calc(100% / 6); height: 100%; object-fit: cover; }
+@keyframes zoomLetter {
+  0%,100% { transform:scale(1); opacity:.8 }
+  50% { transform:scale(1.05); opacity:1 }
+}
 
-    .bouquet-placeholder { margin-top: 20px; width: 150px; height: 150px; }
-    .bouquet-placeholder img { width: 100%; height: 100%; object-fit: cover; border: none; }
+.card {
+  display:none;
+  background:rgba(255,255,255,.95);
+  padding:45px 55px;
+  border-radius:35px;
+  box-shadow:0 20px 60px rgba(0,0,0,.18);
+  text-align:center;
+  z-index:10;
+}
 
-    @keyframes fadeIn { from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
+h1 {
+  font-family:'Great Vibes',cursive;
+  font-size:54px;
+  color:#ff3e78;
+}
 
-    @media (max-width: 600px) {
-      .intro, .loveLetter { font-size: 20px; }
-      .intro span { font-size: 36px; }
-      .card { padding: 30px 20px; }
-      h1 { font-size: 40px; }
-      p { font-size: 16px; }
-      button { padding: 12px 20px; font-size: 16px; }
-      .final h2 { font-size: 48px; }
-      .countdown { font-size: 20px; }
-      .final .note { font-size: 18px; }
-      .slideshow-container { height: 180px; }
-      .slideshow-track img { width: calc(100% / 4); }
-      .bouquet-placeholder { width: 120px; height: 120px; }
-    }
-  </style>
+.buttons { display:flex; gap:15px; margin-top:20px; }
+
+button {
+  padding:14px 28px;
+  border:none;
+  border-radius:999px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+.yes {
+  background:linear-gradient(135deg,#ff5c8a,#ff2e63);
+  color:white;
+}
+.no { background:#eee; }
+
+.hidden { display:none; }
+.details { margin-top:20px; color:#ff2e63; }
+
+/* FINAL PAGE */
+.final {
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle,#ff9ec4,#ff4d88);
+  color:white;
+  text-align:center;
+  z-index:20;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 1s ease;
+}
+.final.show {
+  opacity:1;
+  pointer-events:auto;
+}
+
+.final h2 {
+  font-family:'Great Vibes',cursive;
+  font-size:64px;
+  margin-bottom:10px;
+}
+
+.countdown { font-size:28px; }
+
+.slideshow-container {
+  margin-top:25px;
+  width:80%;
+  max-width:900px;
+  height:250px;
+  overflow:hidden;
+  border-radius:20px;
+}
+
+.slideshow-track {
+  display:flex;
+  height:100%;
+  transition:transform 1s ease;
+}
+.slideshow-track img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  flex-shrink:0;
+}
+
+.bouquet-placeholder {
+  margin-top:20px;
+  width:140px;
+  height:140px;
+}
+.bouquet-placeholder img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* SMALL TOP CONTROLS */
+#musicControls {
+  position:fixed;
+  top:10px;
+  right:10px;
+  display:flex;
+  gap:6px;
+  background:rgba(255,255,255,.35);
+  backdrop-filter:blur(6px);
+  padding:4px 6px;
+  border-radius:999px;
+  opacity:.35;
+  transition:.3s;
+  z-index:2000;
+}
+#musicControls:hover { opacity:1; }
+#musicControls button {
+  background:none;
+  border:none;
+  font-size:14px;
+  cursor:pointer;
+}
+#musicControls input { width:45px; }
+
+/* Gift reveal overlay */
+#giftReveal {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 77, 136, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  font-size: 32px;
+  font-family: 'Great Vibes', cursive;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  z-index: 3000;
+}
+
+#giftReveal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#giftReveal span {
+  font-size: 22px;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 10px;
+  opacity: 0.9;
+}
+
+
+</style>
 </head>
+
 <body>
-  <audio id="bgMusic" loop autoplay>
-    <source src="https://raw.githubusercontent.com/GeloKim/Valentines/main/SpotiDownloader%20(mp3cut.net).mp3" type="audio/mpeg">
-  </audio>
 
-  <div class="intro" id="mainIntro">
-    <span>💗</span>
-    Something special is loading...
+<audio id="bgMusic" loop>
+  <source src="https://raw.githubusercontent.com/GeloKim/Valentines/main/SpotiDownloader%20(mp3cut.net).mp3">
+</audio>
+
+<div class="intro" id="mainIntro">
+  <span>💗</span>
+  Something special is loading...
+</div>
+
+<div class="loveLetter" id="loveLetter">
+  💌 Dear Heino, a special invitation awaits you! 💌
+</div>
+
+<div class="card" id="mainCard">
+  <h1>Heino 💕</h1>
+  <p>Will you be my Valentine?</p>
+  <div class="buttons">
+    <button class="yes" onclick="sayYes()">Yes 💖</button>
+    <button class="no" onclick="showNo(this)">No 😢</button>
+  </div>
+  <div id="noMsg" class="details hidden"></div>
+  <div id="invite" class="details hidden">
+    📍 Date: February 14<br>
+    🕕 Time: 11 AM – Whole Day<br>
+    🍽️ Place: Secret ❤️
+  </div>
+</div>
+
+<div class="final" id="finalPage">
+  <h2>It's a date! 💖</h2>
+  <div class="countdown" id="countdown"></div>
+
+<button id="specialBtn"
+  style="margin-top:16px;padding:10px 22px;border-radius:999px;
+  background:#fff;color:#ff2e63;border:none;cursor:pointer;">
+  Open Surprise 💌<br>
+
+</button>
+
+  <div class="note">
+  Dress beautifully and be ready to take pictures ✨<br>
+  Come hungry and full of energy for our activities 🍽️⚡<br><br>
+  I can't wait to see you, my love ❤️
+</div>
+
+
+  <div class="slideshow-container">
+    <div class="slideshow-track" id="slideShow">
+      <img src="https://raw.githubusercontent.com/GeloKim/Valentines/main/2.png">
+      <img src="https://raw.githubusercontent.com/GeloKim/Valentines/main/3.png">
+      <img src="https://raw.githubusercontent.com/GeloKim/Valentines/main/4.png">
+      <img src="https://raw.githubusercontent.com/GeloKim/Valentines/main/5.png">
+    </div>
   </div>
 
-  <div class="loveLetter letter-slide" id="loveLetter">
-    💌 Dear Heino, a special invitation awaits you! 💌
+  <div class="bouquet-placeholder">
+    <img src="https://raw.githubusercontent.com/GeloKim/Valentines/main/download.gif">
   </div>
+</div>
 
-  <div class="final" id="finalPage">
-    <h2>It's a date! 💖</h2>
-    <div class="countdown" id="countdown">Loading countdown...</div>
-    <div class="note">
-      Dress beautifully and be ready to take pictures ✨<br>
-      Come hungry and full of energy for our activities 🍽️⚡<br><br>
-      I can't wait to see you, my love ❤️
-    </div>
+<script>
+const intro = document.getElementById('mainIntro');
+const letter = document.getElementById('loveLetter');
+const card = document.getElementById('mainCard');
+const finalPage = document.getElementById('finalPage');
+const bgMusic = document.getElementById('bgMusic');
+const slideTrack = document.getElementById('slideShow');
 
-    <div class="slideshow-container">
-      <div class="slideshow-track" id="slideShow">
-        <img src="https://raw.githubusercontent.com/GeloKim/Valentines/main/2.png" alt="Slide 1">
-        <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/3.png" alt="Slide 2">
-        <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/4.png" alt="Slide 3">
-        <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/5.png" alt="Slide 4">
-      </div>
-    </div>
+let introTimeout, letterTimeout, slideInterval;
 
-    <div class="bouquet-placeholder" id="virtualBouquet">
-      <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/download.gif" alt="Bouquet placeholder" />
-    </div>
-  </div>
+/* START SEQUENCE */
+function startSequence() {
+  intro.style.display = 'flex';
+  letter.style.display = 'none';
+  card.style.display = 'none';
+  finalPage.classList.remove('show');
 
-  <div class="card" id="mainCard">
-    <h1>Heino 💕</h1>
-    <p id="question">Will you be my Valentine?</p>
-    <div class="buttons" id="buttons">
-      <button class="yes" onclick="sayYes()">Yes 💖</button>
-      <button class="no" onclick="showNo(this)">No 😢</button>
-    </div>
-    <div id="noMsg" class="details hidden"></div>
-    <div id="invite" class="details hidden letter-animation">
-      📍 Date: February 14<br>
-      🕕 Time: 11 AM - Whole Day<br>
-      🍽️ Place: Secret<br><br>
-      I can’t wait to be with you in this special day ❤️
-    </div>
-  </div>
+  introTimeout = setTimeout(() => {
+    intro.style.display = 'none';
+    letter.style.display = 'flex';
+    letterTimeout = setTimeout(() => {
+      letter.style.display = 'none';
+      card.style.display = 'flex';
+    }, 6000);
+  }, 7000);
+}
 
-  <script>
-    const mainIntro = document.getElementById('mainIntro');
-    const loveLetter = document.getElementById('loveLetter');
-    const mainCard = document.getElementById('mainCard');
+/* RESET */
+function resetExperience() {
+  clearTimeout(introTimeout);
+  clearTimeout(letterTimeout);
+  clearInterval(slideInterval);
 
-    setTimeout(() => {
-      mainIntro.style.display = 'none';
-      loveLetter.style.display = 'flex';
-      setTimeout(() => {
-        loveLetter.style.display = 'none';
-        mainCard.style.display = 'block';
-      }, 6000);
-    }, 7000);
+  document.getElementById('invite').classList.add('hidden');
+  document.getElementById('noMsg').classList.add('hidden');
+  slideTrack.style.transform = 'translateX(0)';
+  document.querySelectorAll('.heart,.sideHeart,.confetti').forEach(e=>e.remove());
 
-    function sayYes() {
-      const invite = document.getElementById('invite');
-      invite.classList.remove('hidden');
-      invite.style.position = 'relative';
-      invite.style.zIndex = '20';
+  bgMusic.pause();
+  bgMusic.currentTime = 0;
 
-      const music = document.getElementById('bgMusic');
-      music.volume = 0.4;
-      music.play().catch(() => {});
+  const controls = document.getElementById('musicControls');
+  if (controls) controls.remove();
 
-      // Delay before showing final page and animations
-      setTimeout(() => {
-        createHearts(50);
-        createConfetti(30);
-        createSideHearts(20);
-        document.getElementById('finalPage').classList.add('show');
-        startSlideLoop();
-      }, 4000); // 4-second delay
-    }
+  startSequence();
+}
 
-    function showNo(btn) {
-      const messages = [
-        "Bakit sino ka date mo 😔",
-        "Hoy, mali yung pindot mo 😆",
-        "Nice try, pero bawal 💔",
-        "Yes only bleh",
-        "Hmm… I think you meant Yes 💖"
-      ];
-      const randomMsg = messages[Math.floor(Math.random() * messages.length)];
-      btn.innerText = "Not available 😔";
-      const noMsg = document.getElementById('noMsg');
-      noMsg.innerText = randomMsg;
-      noMsg.classList.remove('hidden');
-    }
+startSequence();
 
-    function createHearts(count) {
-      for (let i = 0; i < count; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.innerText = '💖';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.fontSize = (16 + Math.random() * 20) + 'px';
-        heart.style.animationDuration = (3 + Math.random() * 3) + 's';
-        heart.style.top = '100%';
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 6000);
-      }
-    }
+function sayYes() {
+  bgMusic.volume = 0.4;
+  bgMusic.play().catch(()=>{});
+  document.getElementById('invite').classList.remove('hidden');
+  showMusicControls();
 
-    function createSideHearts(count) {
-      const finalPage = document.getElementById('finalPage');
-      for (let i = 0; i < count; i++) {
-        const sideHeart = document.createElement('div');
-        sideHeart.className = 'sideHeart';
-        sideHeart.innerText = '💗';
-        sideHeart.style.top = (Math.random() * 80 + 10) + '%';
-        sideHeart.style.left = (Math.random() < 0.5 ? -5 : 95) + '%';
-        sideHeart.style.fontSize = (12 + Math.random() * 16) + 'px';
-        sideHeart.style.opacity = 0.6 + Math.random() * 0.4;
-        sideHeart.style.transition = 'transform 4s ease-in-out';
-        finalPage.appendChild(sideHeart);
-        animateSideHeart(sideHeart);
-      }
-    }
+  setTimeout(() => {
+    finalPage.classList.add('show');
+    startSlideLoop();
+  }, 3000);
+}
 
-    function animateSideHeart(el) {
-      let direction = el.style.left.includes('95') ? -1 : 1;
-      setInterval(() => {
-        el.style.transform = `translateX(${direction * 20}px)`;
-        direction *= -1;
-      }, 2000);
-    }
+function showNo(btn) {
+  const msgs = [
+    "Bakit sino ka date mo 😔",
+    "Hoy, mali yung pindot mo 😆",
+    "Nice try, pero bawal 💔",
+    "Yes only bleh",
+    "Hmm… I think you meant Yes 💖"
+  ];
+  btn.innerText = "Not available 😔";
+  document.getElementById('noMsg').innerText =
+    msgs[Math.floor(Math.random()*msgs.length)];
+  document.getElementById('noMsg').classList.remove('hidden');
+}
 
-    function createConfetti(count) {
-      for (let i = 0; i < count; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
-        confetti.style.animationDuration = (2 + Math.random() * 3) + 's';
-        document.body.appendChild(confetti);
-        setTimeout(() => confetti.remove(), 5000);
-      }
-    }
+/* CONTROLS */
+function showMusicControls() {
+  if (document.getElementById('musicControls')) return;
 
-    function startSlideLoop() {
-      const track = document.getElementById('slideShow');
-      let index = 0;
-      const slides = track.children.length;
-      const slideWidth = track.children[0].offsetWidth;
+  const box = document.createElement('div');
+  box.id = 'musicControls';
 
-      setInterval(() => {
-        index = (index + 1) % slides;
-        track.style.transform = `translateX(-${(index % 6) * slideWidth}px)`;
-      }, 3000);
-    }
+  const play = document.createElement('button');
+  play.textContent = '🎵';
+  play.onclick = () => bgMusic.paused ? bgMusic.play() : bgMusic.pause();
 
-    const targetDate = new Date('February 14, 2026 10:00:00 GMT+0800').getTime();
+  const vol = document.createElement('input');
+  vol.type = 'range';
+  vol.min = 0; vol.max = 1; vol.step = 0.01;
+  vol.value = bgMusic.volume;
+  vol.oninput = () => bgMusic.volume = vol.value;
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-      if (distance <= 0) {
-        document.getElementById('countdown').innerText = "It's today!!! 💖";
-        return;
-      }
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((distance / (1000 * 60)) % 60);
-      const seconds = Math.floor((distance / 1000) % 60);
-      document.getElementById('countdown').innerText = `${days}d ${hours}h ${minutes}m ${seconds}s until our date 💞`;
-    }
+  const restart = document.createElement('button');
+  restart.textContent = '↺';
+  restart.onclick = resetExperience;
 
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
+  box.append(play, vol, restart);
+  document.body.appendChild(box);
+}
+
+/* EFFECTS */
+function createHearts(count) {
+  for (let i = 0; i < count; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerText = '💖';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.top = '100%';
+    heart.style.fontSize = (16 + Math.random() * 20) + 'px';
+    heart.style.animation = 'floatHeart ' + (3 + Math.random() * 3) + 's forwards';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }
+}
+
+function createConfetti(count) {
+  for (let i = 0; i < count; i++) {
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti';
+    confetti.style.left = Math.random() * 100 + 'vw';
+    confetti.style.top = '0';
+    confetti.style.backgroundColor = `hsl(${Math.random()*360},70%,60%)`;
+    confetti.style.animation = 'fallConfetti ' + (2 + Math.random() * 3) + 's forwards';
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 5000);
+  }
+}
+
+function createSideHearts(count) {
+  for (let i = 0; i < count; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'sideHeart';
+    heart.innerText = '💗';
+    heart.style.top = Math.random() * 80 + 10 + '%';
+    heart.style.left = Math.random() < 0.5 ? '-5%' : '95%';
+    heart.style.fontSize = (12 + Math.random() * 16) + 'px';
+    heart.style.opacity = 0.6 + Math.random() * 0.4;
+    heart.style.animation = 'floatHeart 4s forwards';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }
+}
+
+/* SLIDES */
+function startSlideLoop() {
+  let i = 0;
+  slideInterval = setInterval(() => {
+    i = (i + 1) % slideTrack.children.length;
+    slideTrack.style.transform = `translateX(-${i * 100}%)`;
+  }, 3000);
+}
+
+/* COUNTDOWN */
+const target = new Date('February 14, 2026 18:00:00 GMT+0800').getTime();
+setInterval(() => {
+  const d = target - Date.now();
+  const c = document.getElementById('countdown');
+  if (d <= 0) { c.innerText = "It's today!!! 💖"; return; }
+  c.innerText =
+    `${Math.floor(d/86400000)}d ${Math.floor(d/3600000)%24}h ${Math.floor(d/60000)%60}m ${Math.floor(d/1000)%60}s until our date 💞`;
+}, 1000);
+
+const specialBtn = document.getElementById('specialBtn');
+
+specialBtn.addEventListener('click', () => {
+  const reveal = document.getElementById('giftReveal');
+
+  reveal.classList.add('show');
+
+  createHearts(30);
+  createConfetti(25);
+  createSideHearts(15);
+
+  setTimeout(() => {
+    window.location.href = "story.html";
+  }, 2500);
+});
+
+</script>
+
+<div id="giftReveal">
+  Here’s our story so far 💕
+  <span>Opening..</span>
+</div>
+
 </body>
 </html>
-
-
-
-
-
-
