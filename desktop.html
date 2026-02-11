@@ -1,0 +1,756 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Our Story 💕</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{width:100%;height:100vh;overflow:hidden}
+
+/* 🌸 BACKGROUND */
+.desktop{
+  position:relative;
+  width:100%;
+  height:100%;
+  background:linear-gradient(120deg,#ffd6e8,#c8f0d4,#ffb7d5);
+  background-size:400% 400%;
+  animation:bgMove 18s ease infinite;
+}
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* ✨ particles */
+.particle{
+  position:absolute;
+  width:6px;height:6px;
+  background:rgba(255,255,255,.7);
+  border-radius:50%;
+  animation:floatUp linear infinite;
+}
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:0}
+  20%{opacity:.8}
+  to{transform:translateY(-120vh);opacity:0}
+}
+
+/* 🧷 DOCK */
+.dock{
+  position:fixed;
+  bottom:18px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:18px;
+  padding:12px 18px;
+  background:rgba(255,255,255,.35);
+  backdrop-filter:blur(10px);
+  border-radius:22px;
+  z-index:1000;
+}
+.dock-item{
+  width:56px;height:56px;border-radius:16px;
+  background:rgba(255,255,255,.85);
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;cursor:pointer;
+  transition:transform .45s cubic-bezier(.22,1,.36,1),opacity .25s ease;
+}
+.dock-item:hover{
+  transform:translateY(-8px) scale(1.08);
+}
+
+/* 🪟 WINDOWS */
+.window{
+  position:absolute;
+  top:50%;left:50%;
+  width:520px;
+  height:460px;
+  max-width:90%;
+  background:white;
+  border-radius:18px;
+  box-shadow:
+  0 30px 60px rgba(0,0,0,.25),
+  0 8px 20px rgba(0,0,0,.18);
+  transform:scale(.9);
+  opacity:0;
+  pointer-events:none;
+  transition:.35s ease;
+  z-index:2000;
+  overflow:hidden;
+}
+.window.show{
+  opacity:1;
+  transform:scale(1);
+  pointer-events:auto;
+}
+.window.active{
+  box-shadow:
+    0 40px 90px rgba(0,0,0,.35),
+    0 0 0 1px rgba(255,255,255,.4);
+}
+.window:not(.active){
+  filter:brightness(.94) saturate(.96);
+}
+.window-header{
+  cursor:grab;
+  padding:12px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-weight:600;
+}
+.window:hover{
+  transform:scale(1.01) translateY(-3px);
+}
+
+/* 🔴 close dot */
+.close-dot{
+  width:12px;height:12px;border-radius:50%;
+  background:#ff5f57;
+  cursor:pointer;
+  position:relative;
+}
+.close-dot::after{
+  content:"Close";
+  position:absolute;
+  top:-26px;right:0;
+  background:rgba(0,0,0,.75);
+  color:white;
+  font-size:11px;
+  padding:4px 8px;
+  border-radius:6px;
+  opacity:0;
+  transition:.2s;
+}
+.close-dot:hover::after{opacity:1}
+
+/* 📁 FILES */
+.files-header{background:#f7b6d2}
+.files-body{
+  padding:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(110px,1fr));
+  gap:18px;
+}
+.file{
+  background:#fff0f6;
+  border-radius:16px;
+  padding:16px 10px 14px;
+  text-align:center;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+.file img{
+  width:110px;height:110px;
+  object-fit:contain;
+  image-rendering:pixelated;
+}
+.file span{
+  font-size:14px;
+  font-weight:500;
+  margin-top:2px;
+  color:#ff4d88;
+}
+.file:hover{
+  transform:translateY(-4px) scale(1.05);
+  background:#ffe1ec;
+}
+
+/* 🎵 PLAYLIST */
+.playlist-header{
+  background:linear-gradient(135deg,#1db954,#169b45);
+  color:white;
+}
+.playlist-body{
+  background:#0f0f0f;
+  height:calc(100% - 48px);
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+}
+.playlist-list{
+  flex:1;
+  overflow-y:auto;
+  padding-right:6px;
+}
+.playlist-list::-webkit-scrollbar{width:6px}
+.playlist-list::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,0.45);
+  border-radius:10px;
+}
+.playlist-list{
+  scrollbar-width:thin;
+  scrollbar-color:#ff8fb1 transparent;
+  scroll-behavior:smooth;
+}
+
+.song:active{transform:scale(.98)}
+.song{
+  display:flex;
+  justify-content:space-between;
+  padding:10px;
+  border-radius:10px;
+  cursor:pointer;
+  color:white;
+  margin-bottom:6px;
+  transition:transform .25s ease,background .25s ease,box-shadow .25s ease;
+}
+.song:hover{background:rgba(255,255,255,.15)}
+.song span{opacity:.7}
+.song.active{
+  background:rgba(255,255,255,.22);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),
+  0 6px 20px rgba(0,0,0,.25);
+}
+.song.active::after{
+  content:"Playing";
+  font-size:14px;
+  opacity:.7;
+}
+.spotify-player iframe{
+  width:100%;
+  height:80px;
+  border:none;
+  border-radius:14px;
+}
+
+/* 📖 SO FAR */
+.sofar-window{
+  width:720px;
+  height:70vh;
+  max-width:95%;
+}
+.sofar-header{
+  background:linear-gradient(135deg,#ff8fb1,#ffc2d8);
+  color:white;
+}
+.sofar-body{
+  padding:28px;
+  height:calc(100% - 48px);
+  overflow-y:auto;
+  background:#fffafc;
+}
+.sofar-entry{
+  margin-bottom:28px;
+  padding-left:14px;
+  border-left:3px solid #ffd1e1;
+}
+.sofar-date{
+  font-size:13px;
+  color:#999;
+  margin-bottom:6px;
+}
+
+/* 💌 FULL 3D BOOK */
+#letterWindow{
+  width:900px;
+  height:80vh;
+  max-width:95%;
+}
+
+#letterWindow .page-content p{
+  font-family:'Patrick Hand'!important;
+  font-size:22px;
+  line-height:2.2;
+  color:#4a3f3f;
+  letter-spacing:.4px;
+}
+
+
+
+.book-wrapper{
+  height:calc(100% - 48px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.8), transparent 60%),
+    linear-gradient(135deg,#fff1f7,#ffe4f2);
+  perspective:4000px;
+  position:relative;
+  overflow:hidden;
+}
+
+
+
+/* BOOK */
+.book{
+  width:80%;
+  height:85%;
+  position:relative;
+  transform-style:preserve-3d;
+  filter:drop-shadow(0 60px 80px rgba(0,0,0,.25));
+}
+
+
+
+/* PAGES */
+.book-page{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:
+    linear-gradient(to right,#fff,#fdf9fb 60%,#fff5fa);
+  border-radius:18px;
+  box-shadow:
+    0 50px 100px rgba(0,0,0,.25),
+    inset 0 0 80px rgba(0,0,0,.04);
+  transform-origin:left center;
+  transform-style:preserve-3d;
+  transition:transform 1.6s cubic-bezier(.22,1,.36,1);
+  backface-visibility:hidden;
+  padding:70px;
+}
+
+
+
+/* Paper texture */
+.book-page::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(rgba(0,0,0,.02) 1px, transparent 1px);
+  background-size:4px 4px;
+  opacity:.35;
+  border-radius:14px;
+  pointer-events:none;
+}
+
+/* FLIPPED */
+.book-page.flipped{
+  transform:rotateY(-180deg);
+  box-shadow:
+    -30px 40px 80px rgba(0,0,0,.25),
+    inset 0 0 40px rgba(0,0,0,.08);
+}
+
+.book-page:not(.flipped){
+  box-shadow:
+    0 60px 120px rgba(0,0,0,.28),
+    inset 0 0 80px rgba(255,143,177,.06);
+}
+
+/* Dynamic stacking */
+.book-page{
+  z-index:1;
+}
+
+.page-content h3{
+  font-family:'Playfair Display',serif;
+  font-size:30px;
+  letter-spacing:.5px;
+  color:#ff4d88;
+  margin-bottom:25px;
+}
+
+.page-content p{
+  font-size:17px;
+  line-height:2;
+  color:#444;
+}
+
+
+/* Spine */
+.book::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:12px;
+  height:100%;
+  background:linear-gradient(to right,#e8b6cf,#f8d5e7);
+  z-index:50;
+}
+
+/* Controls */
+.book-controls{
+  position:absolute;
+  bottom:25px;
+  display:flex;
+  gap:20px;
+}
+
+.book-controls button{
+  padding:12px 22px;
+  border:none;
+  border-radius:14px;
+  background:rgba(255,255,255,.7);
+  backdrop-filter:blur(10px);
+  color:#ff4d88;
+  font-weight:600;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.15);
+  cursor:pointer;
+  transition:.35s ease;
+}
+
+.book-controls button:hover{
+  transform:translateY(-4px) scale(1.05);
+  box-shadow:
+    0 20px 40px rgba(255,143,177,.35);
+}
+
+
+.book::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-40%;
+  width:40%;
+  height:100%;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.4),
+    transparent
+  );
+  transform:skewX(-20deg);
+  animation:lightSweep 8s infinite;
+}
+
+@keyframes lightSweep{
+  0%{left:-40%}
+  50%{left:120%}
+  100%{left:120%}
+}
+
+
+
+</style>
+</head>
+
+<body>
+<div class="desktop" id="desktop">
+
+<!-- FILES WINDOW -->
+<div class="window" id="filesWindow">
+  <div class="window-header files-header">
+    <span>Files 💕</span>
+    <div class="close-dot"></div>
+  </div>
+  <div class="files-body">
+    <div class="file" data-open="soFarWindow">
+      <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/Foldersicon.PNG">
+      <span>So Far</span>
+    </div>
+    <div class="file"><img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/Foldersicon.PNG"><span>Favorites</span></div>
+    <div class="file"><img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/Foldersicon.PNG"><span>Plans</span></div>
+    <div class="file"><img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/Foldersicon.PNG"><span>Surprise</span></div>
+  </div>
+</div>
+
+<!-- PLAYLIST WINDOW -->
+<div class="window" id="playlistWindow">
+  <div class="window-header playlist-header">
+    <span>GELOPIFY</span>
+    <div class="close-dot"></div>
+  </div>
+  <div class="playlist-body">
+    <div class="playlist-list">
+      <div class="song" data-id="3y6sdyJDD4DxrzoFQVhudH"><div>💖 Teenage Dirtbag</div><span>3:48</span></div>
+      <div class="song" data-id="1HNkqx9Ahdgi1Ixy2xkKkL"><div>💖 Placeholder</div><span>4:02</span></div>
+      <div class="song" data-id="6QgjcU0zLnzq5OrUoSZ3OK"><div>💖 Placeholder</div><span>3:45</span></div>
+      <div class="song" data-id="3y6sdyJDD4DxrzoFQVhudH"><div>💖 Placeholder</div><span>3:12</span></div>
+      <div class="song" data-id="1HNkqx9Ahdgi1Ixy2xkKkL"><div>💖 Placeholder</div><span>4:02</span></div>
+      <div class="song" data-id="6QgjcU0zLnzq5OrUoSZ3OK"><div>💖 Placeholder</div><span>3:45</span></div>
+      <div class="song" data-id="6QgjcU0zLnzq5OrUoSZ3OK"><div>💖 Placeholder</div><span>3:45</span></div>
+      <div class="song" data-id="6QgjcU0zLnzq5OrUoSZ3OK"><div>💖 Placeholder</div><span>3:45</span></div>
+      <div class="song" data-id="6QgjcU0zLnzq5OrUoSZ3OK"><div>💖 Placeholder</div><span>3:45</span></div>
+    </div>
+    <div class="spotify-player">
+      <iframe id="spotifyEmbed"
+        src="https://open.spotify.com/embed/track/3y6sdyJDD4DxrzoFQVhudH"
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture">
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<!-- DOCK -->
+<div class="dock">
+  <div class="dock-item" data-open="filesWindow">📁</div>
+  <div class="dock-item" data-open="playlistWindow">🎵</div>
+  <div class="dock-item" data-open="letterWindow">💌</div>
+
+</div>
+
+<!-- SO FAR WINDOW -->
+<div class="window sofar-window" id="soFarWindow">
+  <div class="window-header sofar-header">
+    <span>So Far 💕</span>
+    <div class="close-dot"></div>
+  </div>
+  <div class="sofar-body">
+    <div class="sofar-entry">
+      <div class="sofar-date">The beginning</div>
+      <h3>When it started</h3>
+      <p>TEST.</p>
+    </div>
+    <div class="sofar-entry">
+      <div class="sofar-date">Little moments</div>
+      <h3>The small things</h3>
+      <p>TEST</p>
+    </div>
+    <div class="sofar-entry">
+      <div class="sofar-date">Realization</div>
+      <h3>TEST</h3>
+      <p>TEST</p>
+    </div>
+    <div class="sofar-entry">
+      <div class="sofar-date">Now</div>
+      <h3>Here we are</h3>
+      <p>TEST.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 💌 LETTER WINDOW -->
+<div class="window" id="letterWindow">
+  <div class="window-header" style="background:linear-gradient(135deg,#ff9ecf,#ffc6e6); color:white;">
+    <span>Our Story Book 💕</span>
+    <div class="close-dot"></div>
+  </div>
+
+  <div class="book-wrapper">
+    <div class="book" id="book">
+
+          <div class="book-page" data-page="0">
+          <div class="page-content">
+          <h3>RAAAAA</h3>
+          <p class="type-target"
+          data-text="blablabalbal, balbblablaablabalbalbalbblablaablabal ,balbalbblablaablab albalbalbblabla blablabhblahblahblah .">
+          </p>
+        </div>
+      </div>
+
+
+      <div class="book-page" data-page="1">
+         <div class="page-content">
+         <h3>boang</h3>
+        <p class="type-target"
+        data-text="ptototoypototoy, ptotoy, pototoy , pototoy.">
+          </p>
+       </div>
+      </div>
+
+
+      <div class="book-page" data-page="2">
+        <div class="page-content">
+        <h3>RAAAA</h3>
+        <p class="type-target"
+       data-text="Kalandian messages blablabalbalbal">
+        </p>
+      </div>
+    </div>
+
+
+    </div>
+
+    <div class="book-controls">
+      <button id="prevPage">←</button>
+      <button id="nextPage">→</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+const desktop = document.getElementById('desktop');
+let topZ = 3000;
+const windows = document.querySelectorAll('.window');
+
+/* PARTICLES */
+for(let i=0;i<25;i++){
+  const p=document.createElement('div');
+  p.className='particle';
+  p.style.left=Math.random()*100+'vw';
+  p.style.bottom='-10px';
+  p.style.animationDuration=(10+Math.random()*10)+'s';
+  p.style.animationDelay=(Math.random()*10)+'s';
+  desktop.appendChild(p);
+}
+
+function centerWindow(win){
+  const rect=win.getBoundingClientRect();
+  win.style.left=(window.innerWidth-rect.width)/2+'px';
+  win.style.top=(window.innerHeight-rect.height)/2+'px';
+}
+
+/* OPEN WINDOWS */
+document.querySelectorAll('[data-open]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const id=btn.getAttribute('data-open');
+    const win=document.getElementById(id);
+
+    windows.forEach(w=>w.classList.remove('active'));
+
+    if (!win.dataset.positioned) {
+      centerWindow(win);
+      win.dataset.positioned = "true";
+    }
+
+    win.classList.add('show','active');
+    win.style.zIndex=++topZ;
+
+    if(id === "letterWindow"){
+      setTimeout(()=>{
+        triggerTyping(0);
+      }, 600);
+    }
+  });
+});
+
+/* CLOSE */
+document.querySelectorAll('.close-dot').forEach(dot=>{
+  dot.addEventListener('click',e=>{
+    e.stopPropagation();
+    dot.closest('.window').classList.remove('show','active');
+  });
+});
+
+/* PLAY SONG */
+document.querySelectorAll('.song').forEach(song=>{
+  song.addEventListener('click',()=>{
+    document.querySelectorAll('.song').forEach(s=>s.classList.remove('active'));
+    song.classList.add('active');
+    document.getElementById('spotifyEmbed').src=
+      `https://open.spotify.com/embed/track/${song.dataset.id}`;
+  });
+});
+
+/* DRAGGING */
+windows.forEach(win=>{
+  const header=win.querySelector('.window-header');
+  let drag=false,sx,sy,sl,st;
+
+  win.addEventListener('mousedown',()=>{
+    windows.forEach(w=>w.classList.remove('active'));
+    win.classList.add('active');
+    win.style.zIndex=++topZ;
+  });
+
+  header.addEventListener('mousedown',e=>{
+    drag=true;
+    sx=e.clientX; sy=e.clientY;
+    const r=win.getBoundingClientRect();
+    sl=r.left; st=r.top;
+    document.addEventListener('mousemove',move);
+    document.addEventListener('mouseup',up);
+  });
+
+  function move(e){
+    if(!drag)return;
+
+    let newLeft = sl + (e.clientX - sx);
+    let newTop  = st + (e.clientY - sy);
+
+    const maxLeft = window.innerWidth - win.offsetWidth;
+    const maxTop  = window.innerHeight - win.offsetHeight;
+
+    newLeft = Math.max(0, Math.min(newLeft, maxLeft));
+    newTop  = Math.max(0, Math.min(newTop, maxTop));
+
+    win.style.left = newLeft + 'px';
+    win.style.top  = newTop + 'px';
+  }
+
+  function up(){
+    drag=false;
+    document.removeEventListener('mousemove',move);
+    document.removeEventListener('mouseup',up);
+  }
+});
+
+/* ========================= */
+/* ===== BOOK SYSTEM ======= */
+/* ========================= */
+
+const pages = document.querySelectorAll('.book-page');
+let currentPage = 0;
+
+function updateStack(){
+  pages.forEach((page, index)=>{
+    page.style.zIndex = pages.length - index;
+  });
+}
+updateStack();
+
+/* PAGE FLIP */
+document.getElementById('nextPage').addEventListener('click',()=>{
+  if(currentPage < pages.length){
+
+    const pageToFlip = pages[currentPage];
+    pageToFlip.classList.add('flipped')
+
+    pageToFlip.addEventListener('transitionend', function handler(e){
+      if(e.propertyName === "transform"){
+        pageToFlip.removeEventListener('transitionend', handler);
+        triggerTyping(currentPage);
+      }
+    });
+
+    currentPage++;
+  }
+});
+
+
+
+document.getElementById('prevPage').addEventListener('click',()=>{
+  if(currentPage > 0){
+    currentPage--;
+    pages[currentPage].classList.remove('flipped');
+  }
+});
+
+/* ========================= */
+/* ===== TYPING EFFECT ===== */
+/* ========================= */
+
+function typeWriter(element, text, speed = 25){
+  let i = 0;
+  element.textContent = "";
+
+  function typing(){
+    if(i < text.length){
+      element.textContent += text.charAt(i);
+      i++;
+      setTimeout(typing, speed);
+    } else {
+      element.dataset.typed = "true";
+    }
+  }
+
+  typing();
+}
+
+function triggerTyping(pageIndex){
+  const page = pages[pageIndex];
+  if(!page) return;
+
+  const paragraph = page.querySelector('.type-target');
+
+  if(paragraph && !paragraph.dataset.typed){
+    const text = paragraph.dataset.text;
+    typeWriter(paragraph, text, 50);
+  }
+}
+</script>
+
+</body>
+</html>
