@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Our Story 💕</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="desktop theme-default" id="desktop">
+
+
+<!-- FILES WINDOW -->
+<div class="window" id="filesWindow">
+  <div class="window-header files-header">
+    <span>Files 💕</span>
+    <div class="close-dot"></div>
+  </div>
+
+  <div class="files-body">
+
+    <div class="file" data-open="soFarWindow">
+      <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/Foldersicon.PNG">
+      <span>So Far</span>
+    </div>
+
+    <div class="file" data-open="favoritesWindow">
+      <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/Foldersicon.PNG">
+      <span>Favorites</span>
+    </div>
+
+    <div class="file" data-open="plansWindow">
+      <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/Foldersicon.PNG">
+      <span>Plans</span>
+    </div>
+
+    <div class="file" data-open="surpriseWindow">
+      <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/Foldersicon.PNG">
+      <span>Surprise</span>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- PLAYLIST WINDOW -->
+<div class="window" id="playlistWindow">
+  <div class="window-header playlist-header">
+    <span>GELOPIFY</span>
+    <div class="close-dot"></div>
+  </div>
+  <div class="playlist-body">
+    <div class="playlist-list">
+      <div class="song" data-id="3y6sdyJDD4DxrzoFQVhudH"><div>💖 Teenage Dirtbag</div><span>3:48</span></div>
+      <div class="song" data-id="1HNkqx9Ahdgi1Ixy2xkKkL"><div>💖 Photograph</div><span>4:18</span></div>
+      <div class="song" data-id="20L6erw0ny2hiwQg8c1Dj4"><div>💖 Daze Inn</div><span>2:33</span></div>
+      <div class="song" data-id="4yI6PDGADBiHoOH8mAX1wt"><div>💖 What I Am Made Of</div><span>2:39</span></div>
+      <div class="song" data-id="3jzU2G7zznQ3bpUzNEBgmj"><div>💖 Perfectly Perfect</div><span>2:58</span></div>
+      <div class="song" data-id="5kksOPkfTvp7kFDsz1mLXE"><div>💖 Pretty Girl</div><span>4:06</span></div>
+      <div class="song" data-id="1OKqZEXuxqz8rNAMDPXhdL"><div>💖 Someday</div><span>2:07</span></div>
+      <div class="song" data-id="1CQ2cMfrmFM1YdfmjENKVE"><div>💖 She Looks So Perfect</div><span>3:22</span></div>
+      <div class="song" data-id="0IktbUcnAGrvD03AWnz3Q8"><div>💖 Lucky</div><span>3:09</span></div>
+    </div>
+    <div class="spotify-player">
+      <iframe id="spotifyEmbed"
+        src="https://open.spotify.com/embed/track/3y6sdyJDD4DxrzoFQVhudH"
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture">
+      </iframe>
+    </div>
+  </div>
+</div>
+
+
+<!-- DESKTOP ICONS -->
+<div class="desktop-icons">
+
+  <div class="desktop-icon">
+    <div class="icon-img">🗑</div>
+    <span>Recycle Bin</span>
+  </div>
+
+  <div class="desktop-icon">
+    <div class="icon-img">🌐</div>
+    <span>Browser</span>
+  </div>
+
+  <div class="desktop-icon" data-open="settingsWindow">
+  <div class="icon-img">⚙️</div>
+  <span>Settings</span>
+  </div>
+
+
+ <div class="desktop-icon" data-open="cameraWindow">
+  <div class="icon-img">📷</div>
+  <span>Camera</span>
+</div>
+
+
+  <div class="desktop-icon" data-open="gamesWindow">
+    <div class="icon-img">🎮</div>
+    <span>Games</span>
+</div>
+
+
+  <div class="desktop-icon" data-open="calendarWindow">
+  <div class="icon-img">🗓️</div>
+  <span>Calendar</span>
+</div>
+
+</div>
+
+<!-- DOCK -->
+<div class="dock">
+  <div class="dock-item" data-open="filesWindow">📁</div>
+  <div class="dock-item" data-open="playlistWindow">🎵</div>
+  <div class="dock-item" data-open="letterWindow">💌</div>
+
+</div>
+
+
+<!-- FAVORITES WINDOW -->
+<div class="window large-window" id="favoritesWindow">
+  <div class="window-header files-header">
+    <span>Favorite Photos 💕</span>
+    <div class="close-dot"></div>
+  </div>
+
+  <div class="favorites-body">
+
+    <div class="favorites-grid">
+
+      <!-- 10 CARDS -->
+      <div class="fav-card" data-img="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/mirrorpic.jpg" data-desc="I love your hair and everything about you here!">Favorite  Mirror Picture</div>
+      <div class="fav-card" data-img="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/Heinopic.png" data-desc="Love at first sight.">All Time Favorite</div>
+      <div class="fav-card" data-img="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/kilay.jpg" data-desc="Bet.">Best Kilay Momints</div>
+      <div class="fav-card" data-img="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/savedd.jpg" data-desc="Saved instantly.">Saved Instantly</div>
+      <div class="fav-card" data-img="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/future.jpg" data-desc="I want this to be real soon :<.">Future</div>
+      <div class="fav-card" data-img="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/Favoritememory.jpg" data-desc="Still makes me pause.">Favorite Memory</div>
+      <div class="fav-card" data-img="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/Glowing.jpg" data-desc="You were glowing here.">Glowing</div>
+      <div class="fav-card" data-img="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/different.png" data-desc="Different that I like, but still you.">Different</div>
+      <div class="fav-card" data-img="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/Us2.jpg" data-desc="Ang ganda mo ditoo huhu">Us</div>
+      <div class="fav-card" data-img="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/sus.jpg" data-desc="HEHE.">Suspicious Favorite</div>
+      <div class="fav-card" data-img="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/Us1.jpg" data-desc="Hehehe Gelvoron">Us #2</div>
+      <div class="fav-card" data-img="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/Us3.jpg" data-desc="Realistic portrait of us">Us #3</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- FAVORITES MODAL -->
+<div id="favoritesModal" class="favorites-modal">
+  <div class="favorites-content">
+    <span id="favoritesClose" class="favorites-close">×</span>
+    <img id="favoritesImage">
+    <p id="favoritesDesc"></p>
+  </div>
+</div>
+
+
+<!-- 💌 LETTER WINDOW -->
+<div class="window" id="letterWindow">
+  <div class="window-header" style="background:linear-gradient(135deg,#ff9ecf,#ffc6e6); color:white;">
+    <span>Happy Valentine's Day' 💕</span>
+    <div class="close-dot"></div>
+  </div>
+
+  <div class="book-wrapper">
+    <div class="book" id="book">
+
+          <div class="book-page" data-page="0">
+          <div class="page-content">
+          <h3>Hi Chay</h3>
+          <p class="type-target"
+          data-text="My love, I used to think love was not really for me, but loving you taught me something different. Before you, love felt distant, it was something like meant for other people and something that I see in movies, but never will I truly experience but then you happened. This valentine's Day, I dont celebrate love. but I celebrate you. I celebrate the way you smile and the way you laugh, I celebrate the way you care so deeply and how much kindness you offer. I celebrate the way you make my heart feel calm.">
+          </p>
+        </div>
+      </div>
+
+
+      <div class="book-page" data-page="1">
+         <div class="page-content">
+         <h3>My Promise</h3>
+        <p class="type-target"
+        data-text="I'll never stop choosing you, no matter what happens. You are my comfort and forever will be the essence of life for me. I will never ever take your love for granted and I am very grateful that I have this privilege of being yours. Mahal na mahal kita Heino, and no one can ever get rid of that and I'll never think twice. I promise to keep loving you intentionally and unconditionally, to choose you again and again every single day.">
+          </p>
+       </div>
+      </div>
+
+
+      <div class="book-page" data-page="2">
+        <div class="page-content">
+        <h3>Happy Valentine's Day</h3>
+        <p class="type-target"
+       data-text="I wish that you enjoyed this simple application that I've done, I'll add more things in here as our life progress, you can check it from time to time you'll never know when something is new. Thank you for being here with me today and I hope that we'll enjoy this day and every single day of our lives together. I love you Chay, Happy Valentines. I am forever and will forever be yours, my love.">
+        </p>
+      </div>
+    </div>
+
+
+    </div>
+
+    <div class="book-controls">
+      <button id="prevPage">←</button>
+      <button id="nextPage">→</button>
+    </div>
+  </div>
+</div>
+
+<!-- CAMERA WINDOW -->
+<div class="window" id="cameraWindow">
+  <div class="window-header">
+    <span>Camera 📷</span>
+    <div class="close-dot"></div>
+  </div>
+
+  <div class="camera-body">
+    <video id="cameraPreview" autoplay playsinline></video>
+
+    <div class="camera-controls">
+      <button id="captureBtn">Capture</button>
+      <button id="retakeBtn" class="hidden">Retake</button>
+    </div>
+
+    <canvas id="photoCanvas" class="hidden"></canvas>
+  </div>
+</div>
+
+
+<!-- CALENDAR WINDOW -->
+<div class="window large-window" id="calendarWindow">
+  <div class="window-header">
+    <span>Calendar 💌</span>
+    <div class="close-dot"></div>
+  </div>
+
+  <div class="calendar-body">
+
+    <h2 class="calendar-title">February 2026</h2>
+
+    <div class="calendar-grid">
+      <!-- Days -->
+      <div class="day muted">1</div>
+      <div class="day muted">2</div>
+      <div class="day muted">3</div>
+      <div class="day muted">4</div>
+      <div class="day muted">5</div>
+      <div class="day muted">6</div>
+      <div class="day muted">7</div>
+
+      <div class="day">8</div>
+      <div class="day">9</div>
+      <div class="day">10</div>
+      <div class="day">11</div>
+      <div class="day">12</div>
+      <div class="day">13</div>
+      <div class="day valentine">14 ❤️</div>
+
+      <div class="day">15</div>
+      <div class="day">16</div>
+      <div class="day">17</div>
+      <div class="day">18</div>
+      <div class="day">19</div>
+      <div class="day">20</div>
+      <div class="day">21</div>
+
+      <div class="day">22</div>
+      <div class="day">23</div>
+      <div class="day">24</div>
+      <div class="day">25</div>
+      <div class="day">26</div>
+      <div class="day">27</div>
+      <div class="day">28</div>
+    </div>
+
+    <div class="calendar-note">
+      The day I get to celebrate loving you a little louder.
+    </div>
+
+
+
+
+
+
+  </div>
+</div>
+
+<!-- ================= GAMES WINDOW ================= -->
+<div class="window large-window" id="gamesWindow">
+  <div class="window-header">
+    <span>Games 🎮</span>
+    <div class="close-dot"></div>
+  </div>
+
+  <div class="games-body">
+
+    <div class="love-quiz-container">
+
+      <h2 class="quiz-title">The Heino Love Quiz 💘</h2>
+
+      <div id="quizArea">
+        <!-- Questions will render here -->
+      </div>
+
+      <button id="quizNext" class="quiz-btn hidden">Next</button>
+
+      <div id="quizResult" class="quiz-result hidden"></div>
+
+    </div>
+
+
+  </div>
+</div>
+
+<!-- SETTINGS WINDOW -->
+<div class="window" id="settingsWindow">
+  <div class="window-header">
+    <span>Settings ⚙️</span>
+    <div class="close-dot"></div>
+  </div>
+
+ <div class="settings-body">
+
+  <h2 class="settings-title">Wallpaper Themes</h2>
+
+  <div class="theme-grid">
+    <div class="theme-card" data-theme="theme-default">
+      <div class="theme-preview preview-default"></div>
+      <span>Default</span>
+    </div>
+
+    <div class="theme-card" data-theme="theme-sunset">
+      <div class="theme-preview preview-sunset"></div>
+      <span>Sunset</span>
+    </div>
+
+    <div class="theme-card" data-theme="theme-night">
+      <div class="theme-preview preview-night"></div>
+      <span>Night</span>
+    </div>
+
+    <div class="theme-card" data-theme="theme-lavender">
+      <div class="theme-preview preview-lavender"></div>
+      <span>Lavender</span>
+    </div>
+  </div>
+
+  <button class="reset-theme">Restore Default</button>
+
+  </div>
+
+</div>
+
+
+<!-- SO FAR WINDOW -->
+<div class="window sofar-window" id="soFarWindow">
+  <div class="window-header sofar-header">
+    <span>So Far 💕</span>
+    <div class="close-dot"></div>
+  </div>
+
+  <!-- 🌌 Atmospheric Background Layer -->
+  <div class="stars-layer"></div>
+  <div class="atmosphere-layer"></div>
+  <div class="fog-layer"></div>
+  <div class="deep-stars"></div>
+  <div class="sofar-body cinematic">
+
+
+  
+    <!-- SCENE 1 -->
+    <section class="scene scene-1">
+      <div class="scene-content">
+        <h1 class="type-line" data-text="At first, we were just strangers."></h1>
+        <p class="type-line delay" data-text="Little did we know that destiny already had plans for us."></p>
+      </div>
+    </section>
+
+    <!-- SCENE 2 -->
+    <section class="scene scene-2">
+      <div class="scene-content">
+
+        <div class="scene-visual">
+          <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/globe.png" class="globe">
+          <div class="distance-arc"></div>
+          <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/boy.PNG" class="sprite boy">
+          <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/girl.PNG" class="sprite girl">
+          <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/MAPDISTANCE.png" class="distance-map">
+
+        </div>
+
+        <h2 class="distance-text">Only 3.3 KM Away</h2>
+        <p class="sub-text">So close… yet we never crossed paths.</p>
+
+      </div>
+    </section>
+
+    <!-- SCENE 3 -->
+  <section class="scene scene-3">
+    <div class="scene-content">
+
+    <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/schoollogo.png" class="school-logo">
+
+    <h2>And we were in the same university.</h2>
+    <p>Same campus. Same universe. Same timelines.</p>
+    <p><b>Different lives.</b></p>
+
+    <!-- STUDY VISUALS -->
+    <div class="study-wrapper">
+
+      <div class="study-boy">
+        <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/boystudying.PNG" class="study-img">
+        <p class="study-text boy-text">
+          I was studying Computer Engineering
+        </p>
+      </div>
+
+      <div class="study-girl">
+        <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/girlstudying.PNG" class="study-img">
+        <p class="study-text girl-text">
+          You were studying Tourism
+        </p>
+      </div>
+
+    </div>
+
+    </div>
+  </section>
+      <!-- SCENE 4 -->
+
+<section class="scene scene-4">
+  <div class="scene-content">
+
+    <h2 class="scene4-line line-1">
+      Then out of nowhere…
+    </h2>
+
+    <div class="threads">
+      <div class="thread thread-left">
+      <div class="thread-inner"></div>
+      </div>
+
+      <div class="thread thread-right">
+      <div class="thread-inner"></div>
+    </div>
+
+      <div class="venn-glow"></div>
+    </div>
+
+    <h2 class="scene4-line line-2">
+      our lives intertwined.
+    </h2>
+
+    <p class="scene4-sub">
+      Magical. Unfamiliar. Yet somehow… home.
+    </p>
+
+  </div>
+</section>
+
+<!-- SCENE 5-->
+<section class="scene scene-5">
+  <div class="scene-content">
+
+    <h2 class="scene5-line">
+      It started with something simple.
+    </h2>
+
+    <div class="phone-wrapper">
+
+      <div class="phone">
+        <div class="screen">   <!-- THIS WAS MISSING -->
+
+          <div class="profile-card" id="swipeCard">
+            <div class="profile-pic"></div>
+            <p class="profile-name">Heino 💕</p>
+          </div>
+
+          <div class="phone-text" id="phoneText"></div>
+
+        </div>
+      </div>
+
+      <p class="side-text" id="sideText"></p>
+
+    </div>
+
+    <h2 class="scene5-line">
+      Just a swipe.
+    </h2>
+
+  </div>
+</section>
+
+<!-- Scene6-->
+
+<section class="scene scene-6">
+  <div class="scene-content">
+
+    <h2 class="scene6-line">
+      Then came the waiting.
+    </h2>
+
+    <div class="phone-wrapper">
+
+      <div class="phone phone-chat">
+
+        <div class="screen chat-screen">
+
+          <!-- Notification -->
+          <div class="notif" id="scene6Notif">
+            Heino replied to your story
+          </div>
+
+          <!-- Chat Area -->
+          <div class="chat-area" id="scene6Chat">
+
+            <div class="chat-bubble heino hidden" id="scene6HeinoFirst">
+              Nagbibike ka sa tirik na araw?? HAHAHA
+            </div>
+
+          </div>
+
+          <!-- Reply Trigger -->
+          <div class="chat-input hidden" id="scene6Input">
+            <span class="dots">...</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <p class="side-text" id="scene6Side"></p>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Scene 7 -->
+
+<section class="scene scene-7">
+  <div class="scene-content">
+
+    <h2 class="scene7-title">
+      
+    </h2>
+
+    <div class="moon" id="scene7Moon"></div>
+
+    <div class="star-chat" id="scene7Chat"></div>
+
+    <p class="side-text" id="scene7Side"></p>
+
+  </div>
+</section>
+
+<section class="scene scene-8">
+  <div class="scene-content">
+    <div class="scene8-status-layer" id="scene8Status"></div>
+
+    <div class="scene8-center">
+
+      <h2 class="scene8-title" id="scene8Title">
+        And then it got quiet.
+      </h2>
+
+      <p class="scene8-line" id="scene8Line1">
+        The messages stopped.
+      </p>
+
+      <p class="scene8-line" id="scene8Line2">
+        The notifications never came.
+      </p>
+
+      <p class="scene8-line" id="scene8Line3">
+        I thought… maybe you found someone else.
+      </p>
+
+      <div class="scene8-timer" id="scene8Timer">
+        Day 1
+      </div>
+
+    </div>
+
+</section>
+
+<section class="scene scene-9">
+  <div class="scene-content">
+
+    <h2 class="scene9-title">
+      Until one opportunity helped me.
+    </h2>
+
+    <div class="scene9-emoji" id="scene9Emoji">
+      😂
+    </div>
+
+    <h2 class="scene9-bright" id="scene9Bright">
+      It happened.
+      <br>
+      My ray of hope finally comes.
+    </h2>
+
+  </div>
+</section>
+
+<section class="scene scene-10">
+  <div class="scene-content">
+
+    <h2 class="scene10-title">
+      And after that…
+    </h2>
+
+    <div class="scene10-messages" id="scene10Messages">
+      <div class="scene10-bubble">Kumusta kaa!!</div>
+      <div class="scene10-bubble">May work na ako!!</div>
+      <div class="scene10-bubble">Ang engot naman nyang CEO niyo 😭 </div>
+      <div class="scene10-bubble">Ang galing mo namannn!!</div>
+    </div>
+
+    <p class="scene10-side">
+      We started talking again.
+      <br><br>
+      Slowly.
+      <br>
+      But this time… it felt different.
+    </p>
+
+  </div>
+</section>
+
+<section class="scene scene-12">
+  <div class="scene-content scene12-content">
+
+    <p class="scene12-line">June 17.</p>
+
+    <p class="scene12-line">You apologized.</p>
+
+    <p class="scene12-line">
+      But what you said next changed everything.
+    </p>
+
+    <p class="scene12-line highlight">
+      “I hoped something would happen.”
+    </p>
+
+    <p class="scene12-line">I was ignorant</p>
+
+    <p class="scene12-line">You were intimidated.</p>
+
+    <p class="scene12-line">
+      You thought I was someone else..
+    </p>
+
+    <p class="scene12-line">And I couldn’t believe it.</p>
+
+    <p class="scene12-line">
+      Because I had been talking about you to my friends
+      like I had zero chance.
+    </p>
+
+    <p class="scene12-line final">
+      We were both down bad.
+      Just too scared to admit it.
+    </p>
+
+  </div>
+</section>
+
+<!-- ================= SCENE 13 ================= -->
+<section class="scene scene-13">
+  <div class="scene-content">
+
+    <h2 class="scene13-title">
+     And finally it was my turn.
+    </h2>
+
+    <div class="scene13-chatbox">
+
+      <div class="scene13-message" id="scene13Message">
+        I have something to tell you...
+      </div>
+
+      <div class="scene13-send hidden" id="scene13Send">
+        SEND
+      </div>
+
+    </div>
+
+    <div class="scene13-final" id="scene13Final">
+      And that’s when everything became real.
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= SCENE 15 ================= -->
+<section class="scene scene-15">
+
+  <!-- Background Layers -->
+  <div class="scene15-sky"></div>
+  <div class="scene15-cloud cloud1"></div>
+  <div class="scene15-cloud cloud2"></div>
+  <div class="scene15-cloud cloud3"></div>
+  <div class="scene15-birds"></div>
+
+  <div class="scene-content">
+    <h2 class="scene15-title">A new morning.</h2>
+    <p class="scene15-line">Not stars above us anymore.</p>
+    <p class="scene15-line">But sunlight.</p>
+    <p class="scene15-line">And something real.</p>
+  </div>
+
+</section>
+
+<!-- ================= SCENE 16 ================= -->
+<section class="scene scene-16">
+  <div class="scene-content">
+
+    <h2 class="scene16-title">
+      8 Months In.
+    </h2>
+
+    <p class="scene16-sub">
+      We went through everything.
+      And somehow… only grew stronger.
+    </p>
+
+    <div class="orb-field">
+
+      <div class="memory-orb meet"
+        data-title="Our First Meet"
+        data-text="The first of every day."
+        data-type="image"
+        data-src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/1stmeet.jpg"></div>
+
+      <div class="memory-orb birthday"
+        data-title="Your Birthday"
+        data-text="Celebrating you felt like celebrating my own heart."
+        data-type="image"
+        data-src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/bday.png"></div>
+
+      <div class="memory-orb christmas"
+        data-title="Christmas"
+        data-text="Our first Christmas together."
+        data-type="image"
+        data-src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/1stchristmas.jpg"></div>
+
+      <!-- VIDEO -->
+      <div class="memory-orb newyear"
+        data-title="New Year"
+        data-text="We entered a new year… together."
+        data-type="video"
+        data-src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/1stnewyear.mp4"></div>
+
+      <!-- VIDEO -->
+      <div class="memory-orb burgy"
+        data-title="Our First Investment"
+        data-text="When I got my Burgy… it felt like we were building something real together."
+        data-type="video"
+        data-src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/brugy.mp4"></div>
+
+      <div class="memory-orb family"
+        data-title="Our First Family Outing"
+        data-text="You with my family. You were welcomed."
+        data-type="image"
+        data-src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/fam.jpg"></div>
+
+      <div class="memory-orb debbie"
+        data-title="Our First Son — Debbie 🐱"
+        data-text="Our chaotic little child."
+        data-type="image"
+        data-src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/debbie.jpg"></div>
+
+      <div class="memory-orb hehe"
+        data-title="Our First Hehe"
+        data-text="We crossed that line together."
+        data-type="image"
+        data-src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/hehe.jpg"></div>
+
+    </div>
+
+    <!-- MODAL -->
+    <div class="memory-modal" id="memoryModal">
+      <div class="memory-content">
+        <div id="memoryMedia"></div>
+        <h3 id="memoryTitle"></h3>
+        <p id="memoryText"></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="scene scene-17">
+
+  <div class="scene17-wrapper">
+  <div class="scene17-vows"></div>
+
+    <div class="scene17-intro">
+      <p>I used to think you were out of my league.</p>
+      <p>I thought love was impossible for me</p>
+      <p>But somehow, you showed me that you love me..</p>
+    </div>
+
+    <div class="scene17-promises">
+      <div class="promise-tile" data-text="Even when things are hard.">Through everything.</div>
+      <div class="promise-tile" data-text="Even when we don’t understand each other.">In confusion.</div>
+      <div class="promise-tile" data-text="Even when growth feels uncomfortable.">In growth.</div>
+      <div class="promise-tile" data-text="Even when we’re both tired.">In exhaustion.</div>
+    </div>
+
+    <!-- Proposal Block -->
+    <div class="scene17-proposal">
+      <h2 class="scene17-question">
+        May I have this privilege to be with you forever?
+      </h2>
+      <button class="scene17-yes">Yes.</button>
+    </div>
+
+    <div class="scene17-vows"></div>
+    
+  <div class="scene17-ending">
+  <h2>I’ll always love you forever.</h2>
+  <p>— Gelo</p>
+  </div>
+
+  
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="script.js"></script>
+</body>
+</html>
