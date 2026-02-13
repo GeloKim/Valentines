@@ -1,18 +1,3 @@
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Our Story 💕</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
-
-<style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
 body{width:100%;height:100vh;overflow:hidden}
 
@@ -69,7 +54,6 @@ body{width:100%;height:100vh;overflow:hidden}
 .dock-item:hover{
   transform:translateY(-8px) scale(1.08);
 }
-
 /* 🪟 WINDOWS */
 .window{
   position:absolute;
@@ -87,7 +71,7 @@ body{width:100%;height:100vh;overflow:hidden}
   pointer-events:none;
   transition:.35s ease;
   z-index:2000;
-  overflow:hidden;
+  overflow:hidden
 }
 .window.show{
   opacity:1;
@@ -99,6 +83,7 @@ body{width:100%;height:100vh;overflow:hidden}
     0 40px 90px rgba(0,0,0,.35),
     0 0 0 1px rgba(255,255,255,.4);
 }
+
 .window:not(.active){
   filter:brightness(.94) saturate(.96);
 }
@@ -109,6 +94,8 @@ body{width:100%;height:100vh;overflow:hidden}
   justify-content:space-between;
   align-items:center;
   font-weight:600;
+  position:relative;
+  z-index:100;
 }
 .window:hover{
   transform:scale(1.01) translateY(-3px);
@@ -136,7 +123,11 @@ body{width:100%;height:100vh;overflow:hidden}
 .close-dot:hover::after{opacity:1}
 
 /* 📁 FILES */
-.files-header{background:#f7b6d2}
+.files-header{
+  
+  background:rgba(247,182,210,.75);
+  backdrop-filter:blur(15px);
+}
 .files-body{
   padding:20px;
   display:grid;
@@ -153,6 +144,7 @@ body{width:100%;height:100vh;overflow:hidden}
   flex-direction:column;
   align-items:center;
   gap:10px;
+  transition:all .35s cubic-bezier(.22,1,.36,1);
 }
 .file img{
   width:110px;height:110px;
@@ -166,8 +158,10 @@ body{width:100%;height:100vh;overflow:hidden}
   color:#ff4d88;
 }
 .file:hover{
-  transform:translateY(-4px) scale(1.05);
   background:#ffe1ec;
+  transform:translateY(-6px) scale(1.07);
+  box-shadow:0 15px 35px rgba(255,105,180,.25);
+  
 }
 
 /* 🎵 PLAYLIST */
@@ -230,30 +224,668 @@ body{width:100%;height:100vh;overflow:hidden}
 
 /* 📖 SO FAR */
 .sofar-window{
-  width:720px;
-  height:70vh;
-  max-width:95%;
+  width:90vw;
+  height:90vh;
+  max-width:1100px;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      #0f1228 0%,
+      #1a1f3f 40%,
+      #2b2f6e 75%,
+      #3b4c8f 100%
+    );
+
+  box-shadow:
+    0 40px 100px rgba(0,0,0,.5),
+    inset 0 0 120px rgba(0,0,0,.4);
+
+ 
 }
-.sofar-header{
-  background:linear-gradient(135deg,#ff8fb1,#ffc2d8);
-  color:white;
-}
+
 .sofar-body{
-  padding:28px;
-  height:calc(100% - 48px);
+  position:relative;
+  z-index:10;
+}
+/* ✨ SO FAR TYPOGRAPHY (OUTSIDE THE BLOCK) */
+.sofar-window h1,
+.sofar-window h2{
+  font-family:'Dancing Script', cursive;
+  color:#f3f4ff;
+  text-shadow:
+    0 0 12px rgba(255,255,255,.15),
+    0 4px 20px rgba(0,0,0,.6);
+}
+
+.sofar-window p{
+  font-family:'Poppins', sans-serif;
+  color:#dcdffb;
+  text-shadow:0 2px 10px rgba(0,0,0,.5);
+}
+
+
+/* 🌌 Atmosphere Layer */
+.atmosphere-layer{
+  position:absolute;
+  inset:-20%;
+  pointer-events:none;
+  z-index:1;
+
+  background:
+    radial-gradient(circle at 60% 40%, rgba(255,255,255,.03), transparent 60%),
+    radial-gradient(circle at 30% 70%, rgba(255,255,255,.025), transparent 60%);
+
+  filter:blur(140px);
+  animation:mistDrift 80s linear infinite alternate;
+  opacity:.6;
+}
+
+
+
+/* 🌫 Ghibli Mist Particles */
+.sofar-window::before{
+  content:"";
+  position:absolute;
+  inset:-5%;
+  pointer-events:none;
+  z-index:5;
+
+  background:
+    radial-gradient(1.5px 1.5px at 20% 30%, rgba(255,255,255,.6), transparent),
+    radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,.5), transparent),
+    radial-gradient(1.5px 1.5px at 50% 80%, rgba(255,255,255,.5), transparent),
+    radial-gradient(1px 1px at 85% 20%, rgba(255,255,255,.5), transparent);
+
+  background-repeat:no-repeat;
+
+  opacity:.25;
+
+  animation:
+    mistFloat 180s linear infinite,
+    mistTwinkle 8s ease-in-out infinite alternate;
+}
+
+.sofar-window::after{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  z-index:50;
+  pointer-events:none;
+
+  background:
+    radial-gradient(circle at 25% 40%, rgba(120,140,255,.18), transparent 70%),
+    radial-gradient(circle at 75% 60%, rgba(200,140,255,.15), transparent 70%),
+    radial-gradient(circle at 40% 20%, rgba(255,160,200,.15), transparent 70%);
+
+  filter:blur(200px);
+  opacity:.5;
+
+  animation:
+    nebulaDrift 40s ease-in-out infinite alternate,
+    nebulaPulse 10s ease-in-out infinite alternate;
+}
+
+.stars-layer{
+  
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+
+  background:
+    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.8), transparent),
+    radial-gradient(1.5px 1.5px at 70% 60%, rgba(255,255,255,.7), transparent),
+    radial-gradient(2px 2px at 40% 80%, rgba(255,255,255,.9), transparent),
+    radial-gradient(1.5px 1.5px at 85% 20%, rgba(255,255,255,.7), transparent),
+    radial-gradient(2px 2px at 10% 70%, rgba(255,255,255,.8), transparent);
+
+  background-repeat:no-repeat;
+  animation:starsDrift 120s linear infinite;
+}
+
+.stars-layer::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:inherit;
+  animation:starsTwinkle 6s ease-in-out infinite alternate;
+  opacity:.5;
+}
+
+
+.galaxy-sweep{
+  position:absolute;
+  inset:-40%;
+  z-index:0;
+  pointer-events:none;
+  background:radial-gradient(circle at 50% 50%, rgba(255,255,255,.04), transparent 70%);
+  animation:nebulaDrift 60s ease-in-out infinite alternate;
+}
+
+/* 🌫 Soft Cinematic Fog */
+.fog-layer{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:5;
+
+  /* Very soft tonal grading instead of white fog */
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.025),
+      rgba(255,255,255,.015),
+      rgba(0,0,0,.05)
+    );
+
+  backdrop-filter: blur(0.1px);
+  opacity:.1;
+}
+  backdrop-filter: blur(0.2px);
+  opacity:.1;
+
+  animation:fogDrift 60s ease-in-out infinite alternate;
+}
+
+
+
+
+@keyframes fogDrift{
+  0%{
+    transform:translate(-30px,-20px) scale(1);
+  }
+  100%{
+    transform:translate(40px,25px) scale(1.05);
+  }
+}
+
+@keyframes mistFloat{
+  0%{ transform:translateY(0px); }
+  100%{ transform:translateY(-300px); }
+}
+
+@keyframes mistTwinkle{
+  0%{ opacity:.4; }
+  100%{ opacity:1; }
+}
+
+
+
+
+
+
+
+
+/* ============================= */
+/* CINEMATIC SCROLL SYSTEM */
+/* ============================= */
+
+.cinematic{
+  height:100%;
   overflow-y:auto;
-  background:#fffafc;
+  scroll-snap-type:y mandatory;
 }
-.sofar-entry{
-  margin-bottom:28px;
-  padding-left:14px;
-  border-left:3px solid #ffd1e1;
+
+.scene{
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  scroll-snap-align:start;
 }
-.sofar-date{
-  font-size:13px;
-  color:#999;
-  margin-bottom:6px;
+
+.scene-content{
+  max-width:800px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 1.2s ease;
 }
+
+.scene.active .scene-content{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ============================= */
+/* SCENE 1 */
+/* ============================= */
+
+.type-line{
+  font-size:36px;
+  margin-bottom:20px;
+}
+
+.delay{
+  font-size:18px;
+  opacity:.8;
+}
+
+/* ============================= */
+/* SCENE 2 – CLEAN CINEMATIC */
+/* ============================= */
+
+.scene-visual{
+  position:relative;
+  width:460px;
+  height:540px;
+  margin:0 auto;
+}
+
+/* 🌍 Globe rolls upward */
+.globe{
+  position:absolute;
+  bottom:-480px;
+  left:50%;
+  transform:translateX(-50%) rotate(0deg);
+  width:380px;
+  z-index:1;
+  transition:
+    bottom 4s cubic-bezier(.22,1,.36,1),
+    transform 4s cubic-bezier(.22,1,.36,1);
+}
+
+.scene-2.active .globe{
+  bottom:0;
+  transform:translateX(-50%) rotate(720deg);
+}
+
+/* 👦👧 Sprites standing on globe */
+.sprite{
+  position:absolute;
+  width:115px;
+  bottom:350px; /* ABOVE globe */
+  z-index:3;
+  transition:all 2.5s cubic-bezier(.22,1,.36,1);
+}
+
+/* VERY apart initially */
+.boy{
+  left:-10px;
+}
+
+.girl{
+  right:-10px;
+}
+
+/* Pull slightly closer (not touching) */
+.scene-2.pull .boy{
+  left:100px;
+}
+
+.scene-2.pull .girl{
+  right:100px;
+}
+
+
+
+/* Distance text */
+.scene-visual{
+  position:relative;   /* make sure this exists */
+}
+
+.distance-text{
+  position:absolute;
+
+  top:120px;           /* vertical placement */
+  right:-230px;        /* pushes it to the right of globe */
+
+  font-family:'Dancing Script', cursive;
+  font-size:46px;
+  line-height:1.1;
+
+  color:#ffffff;
+
+  text-shadow:
+    0 0 18px rgba(255,255,255,.35),
+    0 8px 30px rgba(0,0,0,.7);
+
+  opacity:0;
+  transform:translateX(30px);
+  transition:all 1.4s ease;
+  z-index:4;
+}
+
+.scene-2.show-text .distance-text{
+  opacity:1;
+  transform:translateX(0);
+}
+
+.distance-map{
+  position:absolute;
+  left:-260px;
+  top:120px;
+
+  width:220px;
+  border-radius:14px;
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,.6),
+    0 0 25px rgba(255,255,255,.15);
+
+  opacity:0;
+  transform:translateY(20px) scale(.95);
+  transition:all 1.6s ease;
+  z-index:4;
+}
+
+/* Fade in after pull */
+.scene-2.show-text .distance-map{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+
+@keyframes mapFloat{
+  0%{ transform:translateY(0px); }
+  100%{ transform:translateY(-8px); }
+}
+
+.scene-2.show-text .distance-map{
+  animation:mapFloat 4s ease-in-out infinite alternate;
+}
+
+
+
+.sub-text{
+  opacity:0;
+  transition:opacity 1.8s ease;
+}
+
+.scene-2.show-text .distance-text{
+  opacity:1;
+  transform:translateX(0);
+}
+
+
+
+.scene-2.show-text .sub-text{
+  opacity:1;
+}
+
+@keyframes mapFloat{
+  0%{ transform:translateY(0px); }
+  100%{ transform:translateY(-8px); }
+}
+
+.scene-2.show-text .distance-map{
+  animation:mapFloat 4s ease-in-out infinite alternate;
+}
+
+/* ============================= */
+/* SCENE 3 */
+/* ============================= */
+
+.mapua-wrapper{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-bottom:50px;
+}
+
+.school-logo{
+  width:280px;              /* BIGGER */
+  max-width:80%;
+  transform:scale(.8) translateY(-40px);
+  opacity:0;
+  transition:all 1.2s cubic-bezier(.22,1,.36,1);
+  filter:drop-shadow(0 20px 40px rgba(0,0,0,.5));
+}
+
+.scene-3.active .school-logo{
+  transform:scale(1) translateY(0);
+  opacity:1;
+}
+
+
+.scene-3.active .school-logo{
+  transform:translateY(0);
+  opacity:1;
+}
+
+/* ============================= */
+/* SCENE 3 – UNIVERSITY REVEAL */
+/* ============================= */
+
+.scene3-title,
+.scene3-sub{
+  opacity:0;
+  transform:translateY(20px);
+  transition:all 1.2s ease;
+}
+
+.scene-3.active .scene3-title{
+  opacity:1;
+  transform:translateY(0);
+  transition-delay:.4s;
+}
+
+.scene-3.active .scene3-sub{
+  opacity:1;
+  transform:translateY(0);
+  transition-delay:.8s;
+}
+
+/* Study layout */
+.study-wrapper{
+  margin-top:60px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:40px;
+}
+
+/* Individual sides */
+.study-boy,
+.study-girl{
+  width:45%;
+  text-align:center;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 1.4s cubic-bezier(.22,1,.36,1);
+}
+
+.scene-3.show-studies .study-boy{
+  opacity:1;
+  transform:translateY(0);
+  transition-delay:.3s;
+}
+
+.scene-3.show-studies .study-girl{
+  opacity:1;
+  transform:translateY(0);
+  transition-delay:.8s;
+}
+
+/* Study images */
+.study-img{
+  width:200px;
+  max-width:100%;
+  image-rendering:pixelated;
+  filter:drop-shadow(0 20px 40px rgba(0,0,0,.5));
+  margin-bottom:20px;
+}
+
+/* Study text */
+.study-text{
+  font-size:20px;
+  opacity:0;
+  transform:translateY(20px);
+  transition:all 1s ease;
+}
+
+.scene-3.show-studies .study-text{
+  opacity:1;
+  transform:translateY(0);
+  transition-delay:1.2s;
+}
+
+/* ============================= */
+/* SCENE 4 – INTERTWINED */
+/* ============================= */
+/* ============================= */
+/* SCENE 4 – INTERTWINED */
+/* ============================= */
+
+.scene-4 .scene-content{
+  position:relative;
+}
+
+.scene4-line,
+.scene4-sub{
+  opacity:0;
+  transform:translateY(30px);
+  transition:all 1.2s ease;
+}
+
+.scene-4.active .scene-content{
+  animation: scene4Zoom 6s ease forwards;
+}
+
+@keyframes scene4Zoom{
+  from { transform:scale(1); }
+  to   { transform:scale(1.05); }
+}
+
+.scene-4.active .line-1{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.scene-4.active .line-2{
+  opacity:1;
+  transform:translateY(0);
+  transition-delay:1.5s;
+}
+
+.scene-4.active .scene4-sub{
+  opacity:1;
+  transform:translateY(0);
+  transition-delay:3s;
+}
+
+
+/* ============================= */
+/* SCENE 4 – CLEAN MERGE + STABLE SPIN */
+/* ============================= */
+
+.threads{
+  position:relative;
+  height:220px;
+  margin:40px 0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* Base circle */
+.thread{
+  position:absolute;
+  width:205px;
+  height:200px;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,.4);
+  filter:blur(2px);
+
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 60%);
+
+  opacity:0;
+
+  transition:
+    opacity 1.4s ease,
+    transform 2.2s cubic-bezier(.22,1,.36,1);
+}
+
+/* START far apart */
+.thread-left{
+  background:
+    radial-gradient(circle at 30% 30%,
+      rgba(140, 180, 255, .45),
+      rgba(120, 150, 255, .25),
+      transparent 65%
+    );
+}
+
+.thread-right{
+  background:
+    radial-gradient(circle at 30% 30%,
+      rgba(255, 160, 200, .45),
+      rgba(255, 120, 170, .25),
+      transparent 65%
+    );
+}
+
+
+/* MERGE */
+.scene-4.active .thread{
+  opacity:.85;
+}
+
+.scene-4.active .thread-left{
+  transform:translateX(-80px);
+}
+
+.scene-4.active .thread-right{
+  transform:translateX(80px);
+}
+
+/* SPIN AFTER MERGE — keeps same position */
+@keyframes spinLeft {
+  from { transform: translateX(-80px) rotate(0deg); }
+  to   { transform: translateX(-80px) rotate(360deg); }
+}
+
+@keyframes spinRight {
+  from { transform: translateX(80px) rotate(0deg); }
+  to   { transform: translateX(80px) rotate(-360deg); }
+}
+
+
+/* Apply spin */
+.scene-4.active .thread-left{
+  animation: spinLeft 16s linear infinite;
+  animation-delay:2.2s;
+}
+
+.scene-4.active .thread-right{
+  animation: spinRight 16s linear infinite;
+  animation-delay:2.2s;
+}
+
+/* Glow */
+.venn-glow{
+  position:absolute;
+  width:190px;
+  height:190px;
+  border-radius:50%;
+  pointer-events:none;
+
+  background:radial-gradient(
+    circle,
+    rgba(255,255,255,.35) 0%,
+    rgba(170,190,255,.25) 30%,
+    rgba(120,140,255,.15) 60%,
+    transparent 85%
+  );
+
+  filter:blur(32px);
+  opacity:0;
+  transition:opacity 1.5s ease;
+}
+
+.scene-4.active .venn-glow{
+  opacity:1;
+  transition-delay:1.8s;
+}
+
+
+
+
+
 
 /* 💌 FULL 3D BOOK */
 #letterWindow{
@@ -428,439 +1060,54 @@ body{width:100%;height:100vh;overflow:hidden}
   100%{left:120%}
 }
 
-/* ========================= */
-/* ===== MOBILE MODE ======= */
-/* ========================= */
 
-@media (max-width: 768px){
-
-  body{
-    overflow:auto;
-  }
-
-  .dock{
-    bottom:10px;
-    gap:12px;
-    padding:8px 14px;
-  }
-
-  .dock-item{
-    width:48px;
-    height:48px;
-    font-size:22px;
-  }
-
-  /* Windows become full-screen modal */
-  .window{
-    width:92vw;
-    height:75vh;
-    max-width:92vw;
-    max-height:75vh;
-    border-radius:16px;
-}
-
-
-  .window-header{
-    padding:14px;
-    font-size:16px;
-  touch-action:none;
-  }
-
-  /* Disable hover scale on mobile */
-  .window:hover{
-    transform:none;
-  }
-
-  /* FILE GRID */
-  .files-body{
-    grid-template-columns:repeat(2,1fr);
-    padding:16px;
-  }
-
-  .file img{
-    width:80px;
-    height:80px;
-  }
-
-  /* PLAYLIST */
-  .playlist-body{
-    padding:10px;
-  }
-
-  .song{
-    padding:12px;
-    font-size:14px;
-  }
-
-  /* BOOK WINDOW */
-  #letterWindow{
-    width:100vw !important;
-    height:100vh !important;
-  }
-
-  .book-wrapper{
-    padding:20px;
-  }
-
-  .book{
-    width:95%;
-    height:90%;
-  }
-
-  .book-page{
-    padding:30px;
-  }
-
-  .page-content h3{
-    font-size:22px;
-  }
-
-  #letterWindow .page-content p{
-    font-size:18px !important;
-    line-height:1.9;
-  }
-
-  .book-controls{
-    bottom:15px;
-    gap:12px;
-  }
-
-  .book-controls button{
-    padding:10px 16px;
-    font-size:14px;
-  }
-
-}
-
-</style>
-</head>
-
-<body>
-<div class="desktop" id="desktop">
-
-<!-- FILES WINDOW -->
-<div class="window" id="filesWindow">
-  <div class="window-header files-header">
-    <span>Files 💕</span>
-    <div class="close-dot"></div>
-  </div>
-  <div class="files-body">
-    <div class="file" data-open="soFarWindow">
-      <img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/Foldersicon.PNG">
-      <span>So Far</span>
-    </div>
-    <div class="file"><img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/Foldersicon.PNG"><span>Favorites</span></div>
-    <div class="file"><img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/Foldersicon.PNG"><span>Plans</span></div>
-    <div class="file"><img src="https://raw.githubusercontent.com/GeloKim/Valentines/refs/heads/main/Foldersicon.PNG"><span>Surprise</span></div>
-  </div>
-</div>
-
-<!-- PLAYLIST WINDOW -->
-<div class="window" id="playlistWindow">
-  <div class="window-header playlist-header">
-    <span>GELOPIFY</span>
-    <div class="close-dot"></div>
-  </div>
-  <div class="playlist-body">
-    <div class="playlist-list">
-      <div class="song" data-id="3y6sdyJDD4DxrzoFQVhudH"><div>💖 Teenage Dirtbag</div><span>3:48</span></div>
-      <div class="song" data-id="1HNkqx9Ahdgi1Ixy2xkKkL"><div>💖 Placeholder</div><span>4:02</span></div>
-      <div class="song" data-id="6QgjcU0zLnzq5OrUoSZ3OK"><div>💖 Placeholder</div><span>3:45</span></div>
-      <div class="song" data-id="3y6sdyJDD4DxrzoFQVhudH"><div>💖 Placeholder</div><span>3:12</span></div>
-      <div class="song" data-id="1HNkqx9Ahdgi1Ixy2xkKkL"><div>💖 Placeholder</div><span>4:02</span></div>
-      <div class="song" data-id="6QgjcU0zLnzq5OrUoSZ3OK"><div>💖 Placeholder</div><span>3:45</span></div>
-      <div class="song" data-id="6QgjcU0zLnzq5OrUoSZ3OK"><div>💖 Placeholder</div><span>3:45</span></div>
-      <div class="song" data-id="6QgjcU0zLnzq5OrUoSZ3OK"><div>💖 Placeholder</div><span>3:45</span></div>
-      <div class="song" data-id="6QgjcU0zLnzq5OrUoSZ3OK"><div>💖 Placeholder</div><span>3:45</span></div>
-    </div>
-    <div class="spotify-player">
-      <iframe id="spotifyEmbed"
-        src="https://open.spotify.com/embed/track/3y6sdyJDD4DxrzoFQVhudH"
-        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture">
-      </iframe>
-    </div>
-  </div>
-</div>
-
-<!-- DOCK -->
-<div class="dock">
-  <div class="dock-item" data-open="filesWindow">📁</div>
-  <div class="dock-item" data-open="playlistWindow">🎵</div>
-  <div class="dock-item" data-open="letterWindow">💌</div>
-
-</div>
-
-<!-- SO FAR WINDOW -->
-<div class="window sofar-window" id="soFarWindow">
-  <div class="window-header sofar-header">
-    <span>So Far 💕</span>
-    <div class="close-dot"></div>
-  </div>
-  <div class="sofar-body">
-    <div class="sofar-entry">
-      <div class="sofar-date">The beginning</div>
-      <h3>When it started</h3>
-      <p>TEST.</p>
-    </div>
-    <div class="sofar-entry">
-      <div class="sofar-date">Little moments</div>
-      <h3>The small things</h3>
-      <p>TEST</p>
-    </div>
-    <div class="sofar-entry">
-      <div class="sofar-date">Realization</div>
-      <h3>TEST</h3>
-      <p>TEST</p>
-    </div>
-    <div class="sofar-entry">
-      <div class="sofar-date">Now</div>
-      <h3>Here we are</h3>
-      <p>TEST.</p>
-    </div>
-  </div>
-</div>
-
-<!-- 💌 LETTER WINDOW -->
-<div class="window" id="letterWindow">
-  <div class="window-header" style="background:linear-gradient(135deg,#ff9ecf,#ffc6e6); color:white;">
-    <span>Our Story Book 💕</span>
-    <div class="close-dot"></div>
-  </div>
-
-  <div class="book-wrapper">
-    <div class="book" id="book">
-
-          <div class="book-page" data-page="0">
-          <div class="page-content">
-          <h3>RAAAAA</h3>
-          <p class="type-target"
-          data-text="blablabalbal, balbblablaablabalbalbalbblablaablabal ,balbalbblablaablab albalbalbblabla blablabhblahblahblah .">
-          </p>
-        </div>
-      </div>
-
-
-      <div class="book-page" data-page="1">
-         <div class="page-content">
-         <h3>boang</h3>
-        <p class="type-target"
-        data-text="ptototoypototoy, ptotoy, pototoy , pototoy.">
-          </p>
-       </div>
-      </div>
-
-
-      <div class="book-page" data-page="2">
-        <div class="page-content">
-        <h3>RAAAA</h3>
-        <p class="type-target"
-       data-text="Kalandian messages blablabalbalbal">
-        </p>
-      </div>
-    </div>
-
-
-    </div>
-
-    <div class="book-controls">
-      <button id="prevPage">←</button>
-      <button id="nextPage">→</button>
-    </div>
-  </div>
-</div>
-
-
-
-
-<script>
-const desktop = document.getElementById('desktop');
-let topZ = 3000;
-const windows = document.querySelectorAll('.window');
-
-/* PARTICLES */
-for(let i=0;i<25;i++){
-  const p=document.createElement('div');
-  p.className='particle';
-  p.style.left=Math.random()*100+'vw';
-  p.style.bottom='-10px';
-  p.style.animationDuration=(10+Math.random()*10)+'s';
-  p.style.animationDelay=(Math.random()*10)+'s';
-  desktop.appendChild(p);
-}
-
-function centerWindow(win){
-  const rect=win.getBoundingClientRect();
-  win.style.left=(window.innerWidth-rect.width)/2+'px';
-  win.style.top=(window.innerHeight-rect.height)/2+'px';
-}
-
-/* OPEN WINDOWS */
-document.querySelectorAll('[data-open]').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const id=btn.getAttribute('data-open');
-    const win=document.getElementById(id);
-
-    windows.forEach(w=>w.classList.remove('active'));
-
-    if (!win.dataset.positioned) {
-      centerWindow(win);
-      win.dataset.positioned = "true";
-    }
-
-    win.classList.add('show','active');
-    win.style.zIndex=++topZ;
-
-    if(id === "letterWindow"){
-      setTimeout(()=>{
-        triggerTyping(0);
-      }, 600);
-    }
-  });
-});
-
-/* CLOSE */
-document.querySelectorAll('.close-dot').forEach(dot=>{
-  dot.addEventListener('click',e=>{
-    e.stopPropagation();
-    dot.closest('.window').classList.remove('show','active');
-  });
-});
-
-/* PLAY SONG */
-document.querySelectorAll('.song').forEach(song=>{
-  song.addEventListener('click',()=>{
-    document.querySelectorAll('.song').forEach(s=>s.classList.remove('active'));
-    song.classList.add('active');
-    document.getElementById('spotifyEmbed').src=
-      `https://open.spotify.com/embed/track/${song.dataset.id}`;
-  });
-});
-
-/* ========================= */
-/* ===== DRAGGING SYSTEM === */
-/* ========================= */
-
-windows.forEach(win=>{
-  const header = win.querySelector('.window-header');
-  let isDragging = false;
-  let startX, startY, startLeft, startTop;
-
-  header.addEventListener('pointerdown', (e)=>{
-    isDragging = true;
-
-    windows.forEach(w=>w.classList.remove('active'));
-    win.classList.add('active');
-    win.style.zIndex = ++topZ;
-
-    startX = e.clientX;
-    startY = e.clientY;
-
-    const rect = win.getBoundingClientRect();
-    startLeft = rect.left;
-    startTop = rect.top;
-  });
-
-  window.addEventListener('pointermove', (e)=>{
-    if(!isDragging) return;
-
-    let newLeft = startLeft + (e.clientX - startX);
-    let newTop  = startTop  + (e.clientY - startY);
-
-    const maxLeft = window.innerWidth - win.offsetWidth;
-    const maxTop  = window.innerHeight - win.offsetHeight;
-
-    newLeft = Math.max(0, Math.min(newLeft, maxLeft));
-    newTop  = Math.max(0, Math.min(newTop, maxTop));
-
-    win.style.left = newLeft + "px";
-    win.style.top  = newTop  + "px";
-  });
-
-  window.addEventListener('pointerup', ()=>{
-    isDragging = false;
-  });
-
-});
-
-
-
-/* ========================= */
-/* ===== BOOK SYSTEM ======= */
-/* ========================= */
-
-const pages = document.querySelectorAll('.book-page');
-let currentPage = 0;
-
-function updateStack(){
-  pages.forEach((page, index)=>{
-    page.style.zIndex = pages.length - index;
-  });
-}
-updateStack();
-
-/* PAGE FLIP */
-document.getElementById('nextPage').addEventListener('click',()=>{
-  if(currentPage < pages.length){
-
-    const pageToFlip = pages[currentPage];
-    pageToFlip.classList.add('flipped')
-
-    pageToFlip.addEventListener('transitionend', function handler(e){
-      if(e.propertyName === "transform"){
-        pageToFlip.removeEventListener('transitionend', handler);
-        triggerTyping(currentPage);
-      }
-    });
-
-    currentPage++;
-  }
-});
-
-
-
-document.getElementById('prevPage').addEventListener('click',()=>{
-  if(currentPage > 0){
-    currentPage--;
-    pages[currentPage].classList.remove('flipped');
-  }
-});
-
-/* ========================= */
-/* ===== TYPING EFFECT ===== */
-/* ========================= */
-
-function typeWriter(element, text, speed = 25){
-  let i = 0;
-  element.textContent = "";
-
-  function typing(){
-    if(i < text.length){
-      element.textContent += text.charAt(i);
-      i++;
-      setTimeout(typing, speed);
-    } else {
-      element.dataset.typed = "true";
-    }
-  }
-
-  typing();
-}
-
-function triggerTyping(pageIndex){
-  const page = pages[pageIndex];
-  if(!page) return;
-
-  const paragraph = page.querySelector('.type-target');
-
-  if(paragraph && !paragraph.dataset.typed){
-    const text = paragraph.dataset.text;
-    typeWriter(paragraph, text, 50);
-  }
+@keyframes starsFloat{
+  0%{transform:translateY(0px)}
+  100%{transform:translateY(-200px)}
 }
 
 
 
-</script>
+@keyframes starsTwinkle{
+  0%{opacity:.6}
+  100%{opacity:1}
+}
 
-</body>
-</html>
+@keyframes nebulaDrift{
+  0%{transform:translate(-60px,-40px) scale(1)}
+  50%{transform:translate(60px,40px) scale(1.15)}
+  100%{transform:translate(-30px,60px) scale(1.2)}
+}
+
+@keyframes nebulaPulse{
+  0%{opacity:.7}
+  100%{opacity:1}
+}
+
+@keyframes mistDrift{
+  0%{transform:translate(-40px,-20px)}
+  100%{transform:translate(40px,20px)}
+}
+
+@keyframes starsDrift{
+  0%{
+    transform:translateY(0px);
+  }
+  100%{
+    transform:translateY(-300px);
+  }
+}
+
+.deep-stars{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:2;
+  background-image:
+    radial-gradient(1px 1px at 15% 25%, rgba(255,255,255,.5), transparent),
+    radial-gradient(1px 1px at 75% 65%, rgba(255,255,255,.4), transparent),
+    radial-gradient(1px 1px at 55% 45%, rgba(255,255,255,.6), transparent),
+    radial-gradient(1px 1px at 85% 15%, rgba(255,255,255,.5), transparent);
+
+  animation:starsTwinkle 6s ease-in-out infinite alternate;
+}
